@@ -20,10 +20,8 @@ export default function App() {
         </div>
       </main>
 
-      <footer className="border-t border-gray-800">
-        <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8 text-sm text-gray-400">
+      <footer id="site-footer">
           <Footer />
-        </div>
       </footer>
     </>
   );

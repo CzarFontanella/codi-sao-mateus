@@ -35,12 +35,15 @@ export default function UserBar({
               className="inline-flex items-center gap-2 font-semibold text-md text-yellow-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 rounded"
               aria-label="Ir para o rodapé da página"
             >
-              <MessageSquare className="w-5 h-5" />
-              Fale conosco
+              <div className="inline-flex items-center gap-2 rounded-xl ring-1 ring-white/20 hover:ring-white/40 px-3 py-1.5 bg-gradient-to-r from-white/5 to-white/[0.03]">
+                <MessageSquare className="w-5 h-5" />
+                Fale conosco
+              </div>
             </a>
 
             {/* Telefone e e-mail (somente em md+) */}
             <div className="hidden md:inline-flex items-center gap-4 text-white/90">
+              <span className="opacity-60">•</span>
               <a
                 href="tel:+5532988156599"
                 className="inline-flex items-center gap-2 hover:underline underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 rounded"
