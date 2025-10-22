@@ -1,163 +1,171 @@
+import { Bookmark, Glasses, GraduationCap, Home, Zap } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
+  const brand = "#A243D2";
 
-  const baseLink =
-    "block px-3 py-2 rounded-md text-lg font-bold transition-colors";
-  const inactive = "text-gray-600 hover:text-white hover:bg-[#A243D2]";
-  const active = "text-gray-800 hover:bg-[#A243D2] hover:text-white";
+  const linkBase =
+    "relative inline-flex h-12 items-center gap-4 rounded-md px-4 text-base font-semibold leading-none transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/0";
+  const linkInactive = "text-gray-700 hover:text-gray-900 hover:bg-black/5";
+  const linkActive = "text-[#A243D2] bg-[#A243D2]/10 ring-1 ring-[#A243D2]/20";
+
+  function LinkItem({
+    to,
+    icon,
+    label,
+    onClick,
+  }: {
+    to: string;
+    icon: LucideIcon;
+    label: string;
+    onClick?: () => void;
+  }) {
+    const Icon = icon;
+    return (
+      <NavLink
+        to={to}
+        onClick={onClick}
+        className={({ isActive }) =>
+          [linkBase, isActive ? linkActive : linkInactive].join(" ")
+        }
+      >
+        <Icon className="w-5 h-5 lg:w-6 lg:h-6 shrink-0" />
+        <span
+          className="
+            relative inline-block whitespace-nowrap
+            after:absolute after:left-0 after:right-0 after:bottom-[-3px]
+            after:h-[3px] after:rounded-full after:bg-current
+            after:scale-x-0 hover:after:scale-x-100 after:transition-transform
+          "
+        >
+          {label}
+        </span>
+      </NavLink>
+    );
+  }
 
   return (
-    <nav className="w-full border-b border-gray-800 bg-white/80 text-white backdrop-blur py-2">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center">
-          {/* Marca */}
-          <NavLink
-            to="/"
-            className="text-lg flex-start font-semibold tracking-tight text-white"
-          >
-            <img
-              src="https://codiacademy.com.br/wp-content/uploads/2024/11/thelogocelularnovonovo.png"
-              alt=""
-            />
-          </NavLink>
-
-          {/* Botão mobile */}
-          <button
-            className="
-              inline-flex items-center justify-center rounded-md 
-              p-2 text-gray-900 hover:bg-gray-100
-              focus:outline-none focus:ring-2 focus:ring-[#A243D2] md:hidden"
-            aria-controls="primary-navigation"
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span className="sr-only">Abrir menu</span>
-            {/* Ícone hambúrguer / X */}
-            {open ? (
-              <svg
-                viewBox="0 0 24 24"
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              <svg
-                viewBox="0 0 24 24"
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            )}
-          </button>
-
-          {/* Navegação desktop */}
-          <div
-            className="hidden md:flex md:items-center md:space-x-2 justify-center flex-1 gap-12"
-            id="primary-navigation"
-          >
+    <nav className="sticky top-0 z-50 w-full backdrop-blur bg-white/70 text-gray-900">
+      <div className="border-b border-black/10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* HEADER ROW relative para centralizar absoluto */}
+          <div className="relative flex h-20 items-center gap-6">
+            {/* Logo à esquerda */}
             <NavLink
               to="/"
-              className={({ isActive }) =>
-                `${baseLink} ${
-                  isActive ? active : inactive
-                } inline-flex h-10 items-center gap-2`
-              }
+              className="shrink-0 inline-flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A243D2] rounded-md"
             >
-              <span className="material-icons">home</span>
-              Home
-            </NavLink>
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                `${baseLink} ${
-                  isActive ? active : inactive
-                } inline-flex h-10 items-center gap-2`
-              }
-            >
-              <span className="material-icons">emoji_people</span>
-              Quem Somos
-            </NavLink>
-            <NavLink
-              to="/courses"
-              className={({ isActive }) =>
-                `${baseLink} ${
-                  isActive ? active : inactive
-                } inline-flex h-10 items-center gap-2`
-              }
-            >
-              <span className="material-icons">school</span>
-              Cursos
+              <img
+                src="https://codiacademy.com.br/wp-content/uploads/2024/11/thelogocelularnovonovo.png"
+                alt="Codi Academy"
+                className="h-12 w-auto"
+                loading="lazy"
+              />
             </NavLink>
 
-            <NavLink
-              to="/enroll"
-              className={({ isActive }) =>
-                `${baseLink} ${
-                  isActive ? active : inactive
-                } inline-flex h-10 items-center gap-2`
-              }
+            {/* Botão mobile */}
+            <button
+              className="ml-auto inline-flex items-center justify-center rounded-md p-3 text-gray-800 hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A243D2] md:hidden"
+              aria-controls="primary-navigation"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
             >
-              <span className="material-icons">bookmark</span>
-              Matricule-se Já!
-            </NavLink>
+              <span className="sr-only">Abrir menu</span>
+              {open ? (
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-7 w-7"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-7 w-7"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+
+            {/* Navegação desktop — centro real + sem quebra */}
+            <div
+              id="primary-navigation"
+              className="hidden md:flex items-center
+                         absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                         gap-4 lg:gap-6 whitespace-nowrap"
+            >
+              <LinkItem to="/" icon={Home} label="Home" />
+              <LinkItem to="/about" icon={Glasses} label="Quem Somos" />
+              <LinkItem to="/courses" icon={GraduationCap} label="Cursos" />
+              <LinkItem to="/enroll" icon={Bookmark} label="Matricule-se" />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Navegação mobile */}
-      {open && (
+      {/* Navegação mobile (colapso real de altura quando fechado) */}
+      <div
+        className={[
+          "md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-out will-change-[max-height]",
+          open ? "max-h-[480px] opacity-100" : "max-h-0 opacity-0 pointer-events-none",
+        ].join(" ")}
+        aria-hidden={!open}
+      >
         <div
-          className="md:hidden border-t border-gray-800"
-          id="primary-navigation"
+          className={[
+            "border-b border-black/10 bg-white/85 backdrop-blur",
+            open ? "py-3" : "py-0",
+          ].join(" ")}
         >
-          <div className="space-y-1 px-4 py-3">
-            <NavLink
-              to="/"
-              onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `${baseLink} ${isActive ? active : inactive}`
-              }
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/about"
-              onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `${baseLink} ${isActive ? active : inactive}`
-              }
-            >
-              Quem Somos
-            </NavLink>
-            <NavLink
-              to="/courses"
-              onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `${baseLink} ${isActive ? active : inactive}`
-              }
-            >
-              Cursos
-            </NavLink>
+          <div className="mx-auto max-w-7xl px-4">
+            <div className="grid gap-2">
+              <LinkItem to="/" icon={Home} label="Home" onClick={() => setOpen(false)} />
+              <LinkItem
+                to="/about"
+                icon={Glasses}
+                label="Quem Somos"
+                onClick={() => setOpen(false)}
+              />
+              <LinkItem
+                to="/courses"
+                icon={GraduationCap}
+                label="Cursos"
+                onClick={() => setOpen(false)}
+              />
+
+              {/* CTA mobile maior */}
+              <NavLink
+                to="/enroll"
+                onClick={() => setOpen(false)}
+                className="mt-2 inline-flex items-center gap-3 rounded-xl px-5 py-3 text-base font-semibold text-white hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A243D2]"
+                style={{ backgroundColor: brand }}
+              >
+                <Zap className="w-5 h-5" />
+                Matricule-se Já!
+              </NavLink>
+            </div>
           </div>
         </div>
-      )}
+      </div>
+
+      {/* linha de destaque */}
+      <div
+        className="h-[2px] w-full"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, #A243D2 20%, #7C3AED 50%, #A243D2 80%, transparent)",
+        }}
+      />
     </nav>
   );
 }
