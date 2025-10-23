@@ -30,34 +30,25 @@ export default function NavBar() {
   const linkBase =
     "relative inline-flex h-12 items-center gap-4 rounded-md px-4 text-base font-semibold leading-none transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/0";
   const linkInactive = "text-gray-700 hover:text-gray-900 hover:bg-black/5";
-  const linkActive = "text-[#A243D2] bg-[#A243D2]/10 ring-1 ring-[#A243D2]/20";
 
   function LinkItem({
     to,
     icon,
     label,
     onClick,
-    noActiveStyle,
   }: {
     to: string;
     icon: LucideIcon;
     label: string;
     onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
-    /** quando true, nunca aplica o estilo 'ativo' */
-    noActiveStyle?: boolean;
   }) {
     const Icon = icon;
+    // IMPORTANTE: ignoramos isActive — nunca aplica estilo “ativo”
     return (
       <NavLink
         to={to}
         onClick={onClick}
-        className={({ isActive }) =>
-          [
-            linkBase,
-            // se noActiveStyle estiver true, força "inativo"
-            noActiveStyle ? linkInactive : isActive ? linkActive : linkInactive,
-          ].join(" ")
-        }
+        className={[linkBase, linkInactive].join(" ")}
       >
         <Icon className="w-5 h-5 lg:w-6 lg:h-6 shrink-0" />
         <span
@@ -141,21 +132,19 @@ export default function NavBar() {
             >
               <LinkItem to="/" icon={Home} label="Home" />
 
-              {/* NUNCA ATIVO + scroll para #courses na HOME */}
+              {/* Cursos: continua levando à HOME + scroll para #courses */}
               <LinkItem
                 to="/"
                 icon={GraduationCap}
                 label="Cursos"
-                noActiveStyle
                 onClick={(e) => goto(e, "/", "courses")}
               />
 
-              {/* NUNCA ATIVO + scroll para #about na HOME */}
+              {/* Quem Somos: HOME + scroll para #about */}
               <LinkItem
                 to="/"
                 icon={Glasses}
                 label="Quem Somos"
-                noActiveStyle
                 onClick={(e) => goto(e, "/", "about")}
               />
 
@@ -190,12 +179,10 @@ export default function NavBar() {
                 onClick={() => setOpen(false)}
               />
 
-              {/* Mesma lógica no mobile (nunca ativo) */}
               <LinkItem
                 to="/"
                 icon={GraduationCap}
                 label="Cursos"
-                noActiveStyle
                 onClick={(e) => {
                   goto(e, "/", "courses");
                   setOpen(false);
@@ -206,7 +193,6 @@ export default function NavBar() {
                 to="/"
                 icon={Glasses}
                 label="Quem Somos"
-                noActiveStyle
                 onClick={(e) => {
                   goto(e, "/", "about");
                   setOpen(false);
