@@ -95,7 +95,7 @@ export default function UserBar({
                 </NavLink>
 
                 <NavLink
-                  to="/register"
+                  to="/cadastro"
                   className="inline-flex h-9 items-center gap-2 rounded-lg px-3 font-semibold text-white/90 hover:text-white hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 whitespace-nowrap"
                 >
                   <UserRoundPlus className="w-5 h-5 shrink-0" />

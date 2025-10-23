@@ -159,7 +159,7 @@ export default function NavBar() {
                 onClick={(e) => goto(e, "/", "about")}
               />
 
-              <LinkItem to="/enroll" icon={Bookmark} label="Matricule-se" />
+              <LinkItem to="/matricula" icon={Bookmark} label="Matricule-se" />
             </div>
           </div>
         </div>
@@ -215,7 +215,7 @@ export default function NavBar() {
 
               {/* CTA mobile maior */}
               <NavLink
-                to="/enroll"
+                to="/matricula"
                 onClick={() => setOpen(false)}
                 className="mt-2 inline-flex items-center gap-3 rounded-xl px-5 py-3 text-base font-semibold text-white hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A243D2]"
                 style={{ backgroundColor: brand }}

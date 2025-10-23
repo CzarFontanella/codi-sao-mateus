@@ -5,6 +5,13 @@ import Enroll from "./pages/Enroll";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
+import FrontEnd from "./pages/Cursos/FrontEnd";
+import Informatica from "./pages/Cursos/Informatica";
+import BackEnd from "./pages/Cursos/BackEnd";
+import DataScience from "./pages/Cursos/DataScience";
+import FullStack from "./pages/Cursos/FullStack";
+import IA from "./pages/Cursos/IA";
+
 type AppRouterProps = {
   authenticated: boolean;
   setAuthenticated: (v: boolean) => void;
@@ -25,52 +32,48 @@ export default function Router({
 }: AppRouterProps) {
   return (
     <Routes>
-            {/* Rota protegida */}
-            <Route
-              path="/dashboard"
-              element={
-                authenticated ? (
-                  <h1>Dashboard</h1>
-                ) : (
-                  <Navigate to="/login" replace />
-                )
-              }
-            />
+      {/* Rota protegida */}
+      <Route
+        path="/dashboard"
+        element={
+          authenticated ? <h1>Dashboard</h1> : <Navigate to="/login" replace />
+        }
+      />
 
-            {/* Auth pages (redireciona se já logado) */}
-            <Route
-              path="/login"
-              element={
-                authenticated ? (
-                  <Navigate to="/dashboard" replace />
-                ) : (
-                  <Login />
-                )
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                authenticated ? (
-                  <Navigate to="/dashboard" replace />
-                ) : (
-                  <Register />
-                )
-              }
-            />
+      {/* Auth pages (redireciona se já logado) */}
+      <Route
+        path="/login"
+        element={
+          authenticated ? <Navigate to="/dashboard" replace /> : <Login />
+        }
+      />
+      <Route
+        path="/cadastro"
+        element={
+          authenticated ? <Navigate to="/dashboard" replace /> : <Register />
+        }
+      />
 
-            {/* Logout com side-effect seguro */}
-            <Route
-              path="/logout"
-              element={<Logout onLogout={() => setAuthenticated(false)} />}
-            />
+      {/* Logout com side-effect seguro */}
+      <Route
+        path="/logout"
+        element={<Logout onLogout={() => setAuthenticated(false)} />}
+      />
 
-            {/* Rotas públicas */}
-            <Route path="/" element={<Home />} />
-            <Route path="/enroll" element={<Enroll />} />
+      {/* Rotas públicas */}
+      <Route path="/" element={<Home />} />
+      <Route path="/matricula" element={<Enroll />} />
 
-            {/* Fallback */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+      {/* CURSOS */}
+      <Route path="/cursos/frontend" element={<FrontEnd />} />
+      <Route path="/cursos/backend" element={<BackEnd />} />
+      <Route path="/cursos/fullstack" element={<FullStack />} />
+      <Route path="/cursos/datascience" element={<DataScience />} />
+      <Route path="/cursos/ia" element={<IA />} />
+      <Route path="/cursos/informatica" element={<Informatica />} />
+
+      {/* Fallback */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }

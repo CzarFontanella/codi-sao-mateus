@@ -13,6 +13,11 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 export default function Footer() {
   const accent = "#A243D2";
 
+  // endereço para o mapa
+  const address = "Rua Professor Freire, 125, São Mateus, Juiz de Fora";
+  const addressQuery = encodeURIComponent(address);
+  const mapsEmbedSrc = `https://www.google.com/maps?q=${addressQuery}&z=16&output=embed`;
+
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -96,7 +101,7 @@ export default function Footer() {
                 </ul>
 
                 {/* Socials */}
-                <div className="mt-5 flex items-center gap-3">
+                <div className="mt-3 flex items-center gap-3">
                   <a
                     href="https://www.instagram.com/codi.academy/"
                     aria-label="Instagram"
@@ -126,6 +131,13 @@ export default function Footer() {
                     <Linkedin className="w-5 h-5" />
                   </a>
                 </div>
+                <p className="mt-3 text-sm text-white/70">
+                  Formação prática e direta ao ponto. Aprenda construindo
+                  projetos reais com acompanhamento próximo.
+                </p>
+                <p className="mt-3 text-xs text-white/50">
+                  Suporte por telefone e e-mail em horário comercial.
+                </p>
               </div>
             </div>
           </section>
@@ -165,8 +177,8 @@ export default function Footer() {
                     <ArrowUpRight className="w-4 h-4" />
                   </NavLink>
                   <NavLink
-                    to="/enroll"
-                    onClick={(e) => goto(e, "/enroll", "site-main")}
+                    to="/matricula"
+                    onClick={(e) => goto(e, "/matricula", "site-main")}
                     className={linkBtn}
                   >
                     <span>Matricule-se</span>
@@ -178,23 +190,29 @@ export default function Footer() {
           </section>
 
           {/* Sobre / Marca (CARD) */}
+                    {/* Sobre / Marca (CARD) — MAPA NO LUGAR DA IMAGEM */}
           <section className="flex flex-col">
             <div className="rounded-2xl overflow-hidden ring-1 ring-white/10 bg-gradient-to-b from-white/5 to-white/[0.03] h-full">
               {/* accent sólida */}
               <div className="h-1 w-full" style={{ backgroundColor: accent }} />
-              <div className="p-6 text-center">
-                <img
-                  src="https://codiacademy.com.br/wp-content/uploads/2024/11/thelogocelularnovonovo.png"
-                  alt="Codi Academy"
-                  className="h-10 w-auto block mx-auto rounded"
-                  loading="lazy"
-                />
-                <p className="mt-3 text-sm text-white/70">
-                  Formação prática e direta ao ponto. Aprenda construindo
-                  projetos reais com acompanhamento próximo.
-                </p>
-                <p className="mt-3 text-xs text-white/50">
-                  Suporte por telefone e e-mail em horário comercial.
+              <div className="p-6">
+                <h3 className="text-lg font-semibold text-center">Onde estamos</h3>
+
+                {/* Mapa Google (embed público) */}
+                <div className="mt-4 rounded-xl overflow-hidden ring-1 ring-white/10">
+                  <iframe
+                    title={`Mapa - ${address}`}
+                    src={mapsEmbedSrc}
+                    width="100%"
+                    height="240"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="block"
+                  />
+                </div>
+
+                <p className="mt-3 text-sm text-white/70 text-center">
+                  {address}
                 </p>
               </div>
             </div>
