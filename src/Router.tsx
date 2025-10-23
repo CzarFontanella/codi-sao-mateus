@@ -5,12 +5,12 @@ import Enroll from "./pages/Enroll";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
-import FrontEnd from "./pages/Cursos/FrontEnd";
-import Informatica from "./pages/Cursos/Informatica";
-import BackEnd from "./pages/Cursos/BackEnd";
-import DataScience from "./pages/Cursos/DataScience";
-import FullStack from "./pages/Cursos/FullStack";
-import IA from "./pages/Cursos/IA";
+import FrontEnd from "./pages/Courses/FrontEnd";
+import Informatica from "./pages/Courses/Informatica";
+import BackEnd from "./pages/Courses/BackEnd";
+import DataScience from "./pages/Courses/DataScience";
+import FullStack from "./pages/Courses/FullStack";
+import IA from "./pages/Courses/IA";
 
 type AppRouterProps = {
   authenticated: boolean;

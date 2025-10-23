@@ -7,6 +7,12 @@ import {
   Youtube,
   Linkedin,
   ArrowUpRight,
+  ChartNoAxesCombined,
+  Database,
+  Layers,
+  Palette,
+  Cpu,
+  Bot,
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
@@ -101,6 +107,9 @@ export default function Footer() {
                 </ul>
 
                 {/* Socials */}
+                <h3 id="socials-titulo" className="mt-3 text-lg font-semibold">
+                  Sociais
+                </h3>
                 <div className="mt-3 flex items-center gap-3">
                   <a
                     href="https://www.instagram.com/codi.academy/"
@@ -131,7 +140,7 @@ export default function Footer() {
                     <Linkedin className="w-5 h-5" />
                   </a>
                 </div>
-                <p className="mt-3 text-sm text-white/70">
+                <p className="mt-5 text-sm text-white/70">
                   Formação prática e direta ao ponto. Aprenda construindo
                   projetos reais com acompanhamento próximo.
                 </p>
@@ -184,19 +193,72 @@ export default function Footer() {
                     <span>Matricule-se</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </NavLink>
+
+                  <h3 id="cursos-titulo" className="mt-1 text-lg font-semibold">
+                    Cursos
+                  </h3>
+                  <div className="mt-2 flex items-center gap-3">
+                    <NavLink
+                      to="/cursos/frontend"
+                      onClick={(e) => goto(e, "/cursos/frontend", "site-main")}
+                      className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2 hover:bg-white/10"
+                    >
+                      <Palette />
+                    </NavLink>
+                    <NavLink
+                      to="/cursos/backend"
+                      onClick={(e) => goto(e, "/cursos/backend", "site-main")}
+                      className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2 hover:bg-white/10"
+                    >
+                      <Database />
+                    </NavLink>
+                    <NavLink
+                      to="/cursos/fullstack"
+                      onClick={(e) => goto(e, "/cursos/fullstack", "site-main")}
+                      className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2 hover:bg-white/10"
+                    >
+                      <Layers />
+                    </NavLink>
+                    <NavLink
+                      to="/cursos/datascience"
+                      onClick={(e) =>
+                        goto(e, "/cursos/datascience", "site-main")
+                      }
+                      className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2 hover:bg-white/10"
+                    >
+                      <ChartNoAxesCombined />
+                    </NavLink>
+                    <NavLink
+                      to="/cursos/ia"
+                      onClick={(e) => goto(e, "/cursos/ia", "site-main")}
+                      className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2 hover:bg-white/10"
+                    >
+                      <Bot />
+                    </NavLink>
+                    <NavLink
+                      to="/cursos/informatica"
+                      onClick={(e) =>
+                        goto(e, "/cursos/informatica", "site-main")
+                      }
+                      className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2 hover:bg-white/10"
+                    >
+                      <Cpu />
+                    </NavLink>
+                  </div>
                 </nav>
               </div>
             </div>
           </section>
 
           {/* Sobre / Marca (CARD) */}
-                    {/* Sobre / Marca (CARD) — MAPA NO LUGAR DA IMAGEM */}
           <section className="flex flex-col">
             <div className="rounded-2xl overflow-hidden ring-1 ring-white/10 bg-gradient-to-b from-white/5 to-white/[0.03] h-full">
               {/* accent sólida */}
               <div className="h-1 w-full" style={{ backgroundColor: accent }} />
               <div className="p-6">
-                <h3 className="text-lg font-semibold text-center">Onde estamos</h3>
+                <h3 className="text-lg font-semibold text-center">
+                  Onde estamos
+                </h3>
 
                 {/* Mapa Google (embed público) */}
                 <div className="mt-4 rounded-xl overflow-hidden ring-1 ring-white/10">

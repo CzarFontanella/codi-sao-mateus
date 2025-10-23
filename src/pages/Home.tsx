@@ -1,13 +1,13 @@
-import About from "../components/About";
+import About from "../components/HomeComponents/About";
 import AccentLine from "../components/AccentLine";
-import Codi from "../components/Codi";
-import Courses from "../components/Courses";
+import Hero from "../components/HeroPresentation";
+import Courses from "../components/HomeComponents/Courses";
 
 export default function Home() {
   return (
     <>
       <section id="codi">
-        <Codi />
+        <Hero />
       </section>
       <AccentLine />
       <section id="courses">

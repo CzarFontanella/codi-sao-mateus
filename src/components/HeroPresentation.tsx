@@ -69,29 +69,6 @@ export default function HeroPresentation({
           </NavLink>
         </div>
       </div>
-
-      {/* Linha de destaque inferior (opcional) */}
-      <div
-        className="h-[2px] w-full"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, #A243D2 20%, #7C3AED 50%, #A243D2 80%, transparent)",
-        }}
-      />
     </section>
   );
 }
-
-/* 
-  ANIMAÇÕES UTILITÁRIAS
-  Adicione no seu CSS global (ex.: src/index.css) para usar fadeIn/fadeInUp:
-  
-  @keyframes fadeIn {
-    from { opacity: 0 }
-    to { opacity: 1 }
-  }
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(8px) }
-    to { opacity: 1; transform: translateY(0) }
-  }
-*/

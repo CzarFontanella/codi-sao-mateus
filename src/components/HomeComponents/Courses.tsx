@@ -7,9 +7,12 @@ import {
   Cpu,
   Bot,
 } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 export default function Courses() {
+
+    const navigate = useNavigate();
+  const { pathname, search, hash } = useLocation();
   const courses = [
     {
       title: "Front End",
@@ -17,7 +20,7 @@ export default function Courses() {
       tagline: "Interfaces modernas e responsivas.",
       bullets: ["React + Vite", "Tailwind CSS", "Acessibilidade (a11y)"],
       cta: "Quero construir UIs",
-      href: "/cursos/front-end",
+      href: "/cursos/frontend",
       accent: "from-fuchsia-500 to-violet-800",
     },
     {
@@ -26,7 +29,7 @@ export default function Courses() {
       tagline: "APIs escaláveis e seguras.",
       bullets: ["Node.js/Express", "Auth & JWT", "PostgreSQL/Prisma"],
       cta: "Quero criar APIs",
-      href: "/cursos/back-end",
+      href: "/cursos/backend",
       accent: "from-sky-500 to-cyan-800",
     },
     {
@@ -44,7 +47,7 @@ export default function Courses() {
       tagline: "Dados em ação, decisões melhores.",
       bullets: ["Python/Pandas", "ML básico", "Dashboards"],
       cta: "Quero dominar dados",
-      href: "/cursos/data-science",
+      href: "/cursos/datascience",
       accent: "from-amber-500 to-orange-600",
     },
     {
@@ -67,7 +70,30 @@ export default function Courses() {
     },
   ];
 
-  return (
+
+  function go(
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    href: string
+  ) {
+    e.preventDefault();
+    const scrollToId = "site-main";
+
+    if (pathname === href) {
+      // já está na rota: rola direto
+      document.getElementById(scrollToId)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+      return;
+    }
+
+    // navega e deixa o ScrollOnRouteState rolar ao montar
+    navigate(href + search + hash, {
+      state: { scrollToId },
+    });
+  }
+
+ return (
     <section
       aria-labelledby="cursos-titulo"
       className="w-full bg-gray-950 py-10 sm:py-14 text-white"
@@ -88,27 +114,23 @@ export default function Courses() {
 
         <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {courses.map((c) => {
-            const Icon = c.icon; // pega o componente
+            const Icon = c.icon;
             return (
               <article
                 key={c.title}
                 className="group relative isolate rounded-2xl min-h-[360px] hover:shadow-2xl hover:shadow-black/40 transition-shadow"
               >
-                {/* Glow atrás */}
                 <div
                   className={`pointer-events-none absolute -inset-px rounded-2xl opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-25 bg-gradient-to-r ${c.accent} -z-10`}
                   aria-hidden="true"
                 />
 
-                {/* Wrapper com clip + ring */}
                 <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/10 hover:ring-white/20 bg-gradient-to-b from-white/5 to-white/[0.03] h-full">
-                  {/* Barra de acento */}
                   <div
                     className={`absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-gradient-to-r ${c.accent} z-20`}
                     aria-hidden="true"
                   />
 
-                  {/* Conteúdo */}
                   <div className="relative z-10 p-6 sm:p-7 flex h-full flex-col text-white items-center text-center">
                     <div
                       className={`inline-flex w-fit h-fit items-center justify-center rounded-xl ring-1 ring-white/10 bg-gradient-to-r ${c.accent} p-2 sm:p-3 md:p-4 mb-4`}
@@ -137,6 +159,7 @@ export default function Courses() {
 
                     <NavLink
                       to={c.href}
+                      onClick={(e) => go(e, c.href)}
                       className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white text-gray-900 px-4 py-2.5 text-sm font-medium ring-1 ring-white/10 hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70 focus-visible:ring-offset-gray-950 transition"
                     >
                       <Zap className="w-5 h-5" />

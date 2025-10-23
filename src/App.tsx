@@ -1,9 +1,9 @@
 import { useState } from "react";
-import NavBar from "./components/NavBar.tsx";
-import UserBar from "./components/UserBar.tsx";
+import NavBar from "./components/AppComponents/NavBar.tsx";
+import UserBar from "./components/AppComponents/UserBar.tsx";
 import Router from "./Router.tsx";
-import Footer from "./components/Footer.tsx";
-import ScrollToHash from "./components/ScrollOnRouteState.tsx";
+import Footer from "./components/AppComponents/Footer.tsx";
+import ScrollToHash from "./components/AppComponents/ScrollOnRouteState.tsx";
 import AccentLine from "./components/AccentLine.tsx";
 
 export default function App() {
