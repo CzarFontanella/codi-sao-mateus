@@ -8,10 +8,33 @@ import {
   Linkedin,
   ArrowUpRight,
 } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 export default function Footer() {
   const accent = "#A243D2";
+
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const linkBtn =
+    "inline-flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-white/10 bg-white/5 hover:bg-white/10";
+
+  // navega e rola até um id específico na HOME, sem exibir hash
+  function goto(
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetPath: string,
+    scrollToId: string
+  ) {
+    e.preventDefault();
+    if (pathname === targetPath) {
+      document.getElementById(scrollToId)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    } else {
+      navigate(targetPath, { state: { scrollToId } });
+    }
+  }
 
   return (
     <footer
@@ -19,15 +42,6 @@ export default function Footer() {
       role="contentinfo"
       className="scroll-mt-24 bg-gray-950 text-white"
     >
-      {/* linha de destaque superior (mantém gradiente) */}
-      <div
-        className="h-[2px] w-full"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, #A243D2 20%, #7C3AED 50%, #A243D2 80%, transparent)",
-        }}
-      />
-
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
         {/* Header do bloco "Fale conosco" */}
         <div className="mb-8 sm:mb-12">
@@ -39,7 +53,8 @@ export default function Footer() {
             Estamos por aqui para ajudar
           </h2>
           <p className="mt-2 text-sm sm:text-base text-white/70">
-            Dúvidas sobre cursos, matrículas ou parcerias? Fale com a gente por telefone ou e-mail.
+            Dúvidas sobre cursos, matrículas ou parcerias? Fale com a gente por
+            telefone ou e-mail.
           </p>
         </div>
 
@@ -83,28 +98,28 @@ export default function Footer() {
                 {/* Socials */}
                 <div className="mt-5 flex items-center gap-3">
                   <a
-                    href="#"
+                    href="https://www.instagram.com/codi.academy/"
                     aria-label="Instagram"
                     className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2 hover:bg-white/10"
                   >
                     <Instagram className="w-5 h-5" />
                   </a>
                   <a
-                    href="#"
+                    href="https://www.facebook.com/codiacademy/"
                     aria-label="Facebook"
                     className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2 hover:bg-white/10"
                   >
                     <Facebook className="w-5 h-5" />
                   </a>
                   <a
-                    href="#"
+                    href="https://www.youtube.com/@CodiAcademytv"
                     aria-label="YouTube"
                     className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2 hover:bg-white/10"
                   >
                     <Youtube className="w-5 h-5" />
                   </a>
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/company/codi-academy/"
                     aria-label="LinkedIn"
                     className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2 hover:bg-white/10"
                   >
@@ -127,28 +142,32 @@ export default function Footer() {
                 <nav className="mt-4 grid gap-2 text-white/80">
                   <NavLink
                     to="/"
-                    className="inline-flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-white/10 bg-white/5 hover:bg-white/10"
+                    onClick={(e) => goto(e, "/", "site-main")}
+                    className={linkBtn}
                   >
                     <span>Home</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </NavLink>
                   <NavLink
-                    to="/about"
-                    className="inline-flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-white/10 bg-white/5 hover:bg-white/10"
+                    to="/"
+                    onClick={(e) => goto(e, "/", "about")}
+                    className={linkBtn}
                   >
                     <span>Quem Somos</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </NavLink>
                   <NavLink
-                    to="/courses"
-                    className="inline-flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-white/10 bg-white/5 hover:bg-white/10"
+                    to="/"
+                    onClick={(e) => goto(e, "/", "courses")}
+                    className={linkBtn}
                   >
                     <span>Cursos</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </NavLink>
                   <NavLink
                     to="/enroll"
-                    className="inline-flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-white/10 bg-white/5 hover:bg-white/10"
+                    onClick={(e) => goto(e, "/enroll", "site-main")}
+                    className={linkBtn}
                   >
                     <span>Matricule-se</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -163,7 +182,7 @@ export default function Footer() {
             <div className="rounded-2xl overflow-hidden ring-1 ring-white/10 bg-gradient-to-b from-white/5 to-white/[0.03] h-full">
               {/* accent sólida */}
               <div className="h-1 w-full" style={{ backgroundColor: accent }} />
-              <div className="p-6">
+              <div className="p-6 text-center">
                 <img
                   src="https://codiacademy.com.br/wp-content/uploads/2024/11/thelogocelularnovonovo.png"
                   alt="Codi Academy"
@@ -171,7 +190,8 @@ export default function Footer() {
                   loading="lazy"
                 />
                 <p className="mt-3 text-sm text-white/70">
-                  Formação prática e direta ao ponto. Aprenda construindo projetos reais com acompanhamento próximo.
+                  Formação prática e direta ao ponto. Aprenda construindo
+                  projetos reais com acompanhamento próximo.
                 </p>
                 <p className="mt-3 text-xs text-white/50">
                   Suporte por telefone e e-mail em horário comercial.
@@ -184,8 +204,9 @@ export default function Footer() {
 
       {/* faixa final */}
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 text-center text-sm text-white/70">
-          © {new Date().getFullYear()} Codi Academy. Todos os direitos reservados.
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2 text-center text-sm text-white/70">
+          © {new Date().getFullYear()} Codi Academy. Todos os direitos
+          reservados.
         </div>
       </div>
     </footer>

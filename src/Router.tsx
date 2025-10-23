@@ -1,8 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Courses from "./pages/Courses";
 import Enroll from "./pages/Enroll";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -69,8 +67,6 @@ export default function Router({
 
             {/* Rotas públicas */}
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/courses" element={<Courses />} />
             <Route path="/enroll" element={<Enroll />} />
 
             {/* Fallback */}

@@ -1,11 +1,31 @@
 import { Bookmark, Glasses, GraduationCap, Home, Zap } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
   const brand = "#A243D2";
+
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  // navega e rola até um id específico na HOME, sem exibir hash
+  function goto(
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetPath: string,
+    scrollToId: string
+  ) {
+    e.preventDefault();
+    if (pathname === targetPath) {
+      document.getElementById(scrollToId)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    } else {
+      navigate(targetPath, { state: { scrollToId } });
+    }
+  }
 
   const linkBase =
     "relative inline-flex h-12 items-center gap-4 rounded-md px-4 text-base font-semibold leading-none transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/0";
@@ -17,11 +37,14 @@ export default function NavBar() {
     icon,
     label,
     onClick,
+    noActiveStyle,
   }: {
     to: string;
     icon: LucideIcon;
     label: string;
-    onClick?: () => void;
+    onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+    /** quando true, nunca aplica o estilo 'ativo' */
+    noActiveStyle?: boolean;
   }) {
     const Icon = icon;
     return (
@@ -29,7 +52,11 @@ export default function NavBar() {
         to={to}
         onClick={onClick}
         className={({ isActive }) =>
-          [linkBase, isActive ? linkActive : linkInactive].join(" ")
+          [
+            linkBase,
+            // se noActiveStyle estiver true, força "inativo"
+            noActiveStyle ? linkInactive : isActive ? linkActive : linkInactive,
+          ].join(" ")
         }
       >
         <Icon className="w-5 h-5 lg:w-6 lg:h-6 shrink-0" />
@@ -82,7 +109,11 @@ export default function NavBar() {
                   stroke="currentColor"
                   strokeWidth="2"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               ) : (
                 <svg
@@ -92,7 +123,11 @@ export default function NavBar() {
                   stroke="currentColor"
                   strokeWidth="2"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               )}
             </button>
@@ -105,8 +140,25 @@ export default function NavBar() {
                          gap-4 lg:gap-6 whitespace-nowrap"
             >
               <LinkItem to="/" icon={Home} label="Home" />
-              <LinkItem to="/about" icon={Glasses} label="Quem Somos" />
-              <LinkItem to="/courses" icon={GraduationCap} label="Cursos" />
+
+              {/* NUNCA ATIVO + scroll para #courses na HOME */}
+              <LinkItem
+                to="/"
+                icon={GraduationCap}
+                label="Cursos"
+                noActiveStyle
+                onClick={(e) => goto(e, "/", "courses")}
+              />
+
+              {/* NUNCA ATIVO + scroll para #about na HOME */}
+              <LinkItem
+                to="/"
+                icon={Glasses}
+                label="Quem Somos"
+                noActiveStyle
+                onClick={(e) => goto(e, "/", "about")}
+              />
+
               <LinkItem to="/enroll" icon={Bookmark} label="Matricule-se" />
             </div>
           </div>
@@ -117,7 +169,9 @@ export default function NavBar() {
       <div
         className={[
           "md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-out will-change-[max-height]",
-          open ? "max-h-[480px] opacity-100" : "max-h-0 opacity-0 pointer-events-none",
+          open
+            ? "max-h-[480px] opacity-100"
+            : "max-h-0 opacity-0 pointer-events-none",
         ].join(" ")}
         aria-hidden={!open}
       >
@@ -129,18 +183,34 @@ export default function NavBar() {
         >
           <div className="mx-auto max-w-7xl px-4">
             <div className="grid gap-2">
-              <LinkItem to="/" icon={Home} label="Home" onClick={() => setOpen(false)} />
               <LinkItem
-                to="/about"
-                icon={Glasses}
-                label="Quem Somos"
+                to="/"
+                icon={Home}
+                label="Home"
                 onClick={() => setOpen(false)}
               />
+
+              {/* Mesma lógica no mobile (nunca ativo) */}
               <LinkItem
-                to="/courses"
+                to="/"
                 icon={GraduationCap}
                 label="Cursos"
-                onClick={() => setOpen(false)}
+                noActiveStyle
+                onClick={(e) => {
+                  goto(e, "/", "courses");
+                  setOpen(false);
+                }}
+              />
+
+              <LinkItem
+                to="/"
+                icon={Glasses}
+                label="Quem Somos"
+                noActiveStyle
+                onClick={(e) => {
+                  goto(e, "/", "about");
+                  setOpen(false);
+                }}
               />
 
               {/* CTA mobile maior */}
@@ -157,15 +227,6 @@ export default function NavBar() {
           </div>
         </div>
       </div>
-
-      {/* linha de destaque */}
-      <div
-        className="h-[2px] w-full"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, #A243D2 20%, #7C3AED 50%, #A243D2 80%, transparent)",
-        }}
-      />
     </nav>
   );
 }
