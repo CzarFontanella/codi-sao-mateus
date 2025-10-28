@@ -15,6 +15,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import AccentLine from "../AccentLine";
 
 export default function About() {
   const accent = "#A243D2";
@@ -224,7 +225,7 @@ export default function About() {
           </div>
         </div>
       </section>
-
+            <AccentLine />
       {/* COMO ENSINAMOS (pilares) */}
       <section className="py-10 sm:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
