@@ -126,12 +126,6 @@ export default function About() {
                 Começar agora
                 <ArrowRight className="w-4 h-4" />
               </NavLink>
-              <NavLink
-                to="/courses"
-                className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold ring-1 ring-white/10 bg-white/5 hover:bg-white/10"
-              >
-                Ver cursos
-              </NavLink>
             </div>
 
             {/* badges */}
@@ -298,12 +292,6 @@ export default function About() {
                 >
                   Matricule-se Já
                   <ArrowRight className="w-4 h-4" />
-                </NavLink>
-                <NavLink
-                  to="/courses"
-                  className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold ring-1 ring-white/10 bg-white/5 hover:bg-white/10"
-                >
-                  Ver todos os cursos
                 </NavLink>
               </div>
             </div>

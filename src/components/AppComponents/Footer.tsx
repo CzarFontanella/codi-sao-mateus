@@ -87,7 +87,7 @@ export default function Footer() {
                       href="tel:+5532988156599"
                       className="group inline-flex items-center gap-3 hover:text-white"
                     >
-                      <span className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2">
+                      <span className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2 hover:bg-white/10">
                         <Phone className="w-5 h-5" />
                       </span>
                       <span className="font-medium">(32) 98815-6599</span>
@@ -98,7 +98,7 @@ export default function Footer() {
                       href="mailto:adm@codiacademy.com"
                       className="group inline-flex items-center gap-3 hover:text-white"
                     >
-                      <span className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2">
+                      <span className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2 hover:bg-white/10">
                         <Mail className="w-5 h-5" />
                       </span>
                       <span className="font-medium">adm@codiacademy.com</span>

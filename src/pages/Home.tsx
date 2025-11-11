@@ -1,6 +1,6 @@
 import About from "../components/HomeComponents/About";
 import AccentLine from "../components/AccentLine";
-import Hero from "../components/HeroPresentation";
+import Hero from "../components/HomeComponents/HeroPresentation";
 import Courses from "../components/HomeComponents/Courses";
 
 export default function Home() {
