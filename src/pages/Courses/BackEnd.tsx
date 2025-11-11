@@ -163,21 +163,6 @@ export default function BackEnd() {
     },
   ];
 
-  const plan = [
-    { week: "Semana 1", topic: "Fundamentos HTTP/REST, setup Node/TS", deliverable: "Repo + endpoint de saúde" },
-    { week: "Semana 2", topic: "Express: rotas, middlewares e erros", deliverable: "Módulo de usuários (CRUD)" },
-    { week: "Semana 3", topic: "PostgreSQL/Prisma: modelagem e migrations", deliverable: "Relacional pronto + seeds" },
-    { week: "Semana 4", topic: "Autenticação (JWT) e autorização (RBAC)", deliverable: "Fluxo login/refresh protegido" },
-    { week: "Semana 5", topic: "Testes (unidade/integração) e cobertura", deliverable: "CI rodando testes" },
-    { week: "Semana 6", topic: "Uploads, emails e serviços externos", deliverable: "Upload + email transacional" },
-    { week: "Semana 7", topic: "Cache com Redis e invalidações", deliverable: "Endpoints com cache e TTL" },
-    { week: "Semana 8", topic: "OpenAPI/Swagger e DX para consumidores", deliverable: "Documentação navegável" },
-    { week: "Semana 9", topic: "Observabilidade: logs, métricas e tracing", deliverable: "Logs estruturados + traces" },
-    { week: "Semana 10", topic: "Docker & Compose, variáveis e secrets", deliverable: "Stack dockerizada local" },
-    { week: "Semana 11", topic: "CI/CD e arquitetura limpa", deliverable: "Pipeline: build/test/release" },
-    { week: "Semana 12", topic: "Projeto integrador (capstone)", deliverable: "Deploy final + apresentação" },
-  ];
-
   const totalHours = modules.reduce((acc, m) => acc + m.hours, 0); // 70h
 
   return (
@@ -188,7 +173,7 @@ export default function BackEnd() {
           <div className="rounded-2xl bg-gradient-to-r from-sky-500 to-cyan-800 p-6 sm:p-10 ring-1 ring-white/10 overflow-hidden">
             <div className="relative z-10 flex flex-col gap-4 sm:gap-6">
               <span className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-white/90">
-                <Server className="h-4 w-4" aria-hidden />
+                <Database className="h-4 w-4" aria-hidden />
                 Trilha Profissional Back End
               </span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight drop-shadow">
@@ -347,68 +332,6 @@ export default function BackEnd() {
                 </article>
               );
             })}
-          </div>
-        </section>
-
-        {/* Plano de Ensino */}
-        <section aria-labelledby="plano" className="mt-10 sm:mt-14">
-          <h2 id="plano" className="text-xl sm:text-2xl font-semibold mb-4">
-            Plano de ensino (cronograma)
-          </h2>
-          <div className="overflow-hidden rounded-2xl ring-1 ring-white/10">
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-white/10">
-                <thead className="bg-white/5">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-300"
-                    >
-                      Semana
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-300"
-                    >
-                      Tema
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-300"
-                    >
-                      Entrega/Avaliação
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/10 bg-white/0">
-                  {plan.map((row) => (
-                    <tr key={row.week} className="hover:bg-white/[0.03]">
-                      <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-100">
-                        {row.week}
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-100">
-                        {row.topic}
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-300">
-                        {row.deliverable}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-                <tfoot className="bg-white/5">
-                  <tr>
-                    <td
-                      className="px-4 py-3 text-sm font-semibold text-gray-100"
-                      colSpan={3}
-                    >
-                      Carga horária total: {totalHours}h · Critérios de
-                      aprovação: participação + entregas semanais + projeto
-                      final (nota ≥ 7.0)
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
           </div>
         </section>
 

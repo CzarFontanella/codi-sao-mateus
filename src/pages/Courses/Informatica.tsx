@@ -9,7 +9,6 @@ import {
   HardDrive,
   MousePointerClick,
   FolderOpenDot,
-  RefreshCcw,
   FileText,
   Zap,
 } from "lucide-react";
@@ -108,21 +107,6 @@ export default function Informatica() {
     },
   ];
 
-  const plan = [
-    { week: "Semana 1", topic: "Introdução, hardware x software e Windows básico", deliverable: "Checklist de ambientação" },
-    { week: "Semana 2", topic: "Pastas, versões, compactação e backup em nuvem", deliverable: "Estrutura de pastas do aluno" },
-    { week: "Semana 3", topic: "Documentos: formatação, estilos e modelos", deliverable: "Documento formatado com sumário" },
-    { week: "Semana 4", topic: "Documentos: revisão, comentários e PDF", deliverable: "Relatório final em PDF" },
-    { week: "Semana 5", topic: "Planilhas: tabelas, validação e filtros", deliverable: "Planilha de controle simples" },
-    { week: "Semana 6", topic: "Planilhas: fórmulas e gráficos", deliverable: "Mini dashboard com 2 gráficos" },
-    { week: "Semana 7", topic: "Apresentações: design e storytelling", deliverable: "Slide deck de 6–8 slides" },
-    { week: "Semana 8", topic: "E-mail, calendário, tarefas e netiqueta", deliverable: "Agenda semanal integrada" },
-    { week: "Semana 9", topic: "Navegação segura, 2FA, golpes e privacidade", deliverable: "Plano de segurança pessoal" },
-    { week: "Semana 10", topic: "Manutenção básica e troubleshooting", deliverable: "Checklist de manutenção" },
-    { week: "Semana 11", topic: "Projeto integrador — parte 1", deliverable: "Plano do projeto" },
-    { week: "Semana 12", topic: "Projeto integrador — parte 2 e apresentação", deliverable: "Entrega final + apresentação" },
-  ];
-
   const totalHours = modules.reduce((acc, m) => acc + m.hours, 0);
 
   return (
@@ -132,8 +116,8 @@ export default function Informatica() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14">
           <div className="rounded-2xl bg-gradient-to-r from-lime-400 to-emerald-700 p-6 sm:p-10 ring-1 ring-white/10 overflow-hidden">
             <div className="relative z-10 flex flex-col gap-4 sm:gap-6">
-              <span className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-emerald-950/90">
-                <RefreshCcw className="h-4 w-4" aria-hidden />
+              <span className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-white/90">
+                <Cpu className="h-4 w-4" aria-hidden />
                 Curso de Fundamentos Práticos
               </span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight drop-shadow">
@@ -189,23 +173,38 @@ export default function Informatica() {
       </header>
 
       {/* MAIN (alvo do scroll externo) */}
-      <main id="site-main" className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+      <main
+        id="site-main"
+        className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14"
+      >
         {/* Visão geral / O que você vai aprender */}
-        <section aria-labelledby="aprendizado" className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+        <section
+          aria-labelledby="aprendizado"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8"
+        >
           <article className="lg:col-span-2 rounded-2xl ring-1 ring-white/10 bg-white/5 p-6 sm:p-8">
             <header className="mb-4">
-              <h2 id="aprendizado" className="text-xl sm:text-2xl font-semibold">
+              <h2
+                id="aprendizado"
+                className="text-xl sm:text-2xl font-semibold"
+              >
                 O que você vai aprender
               </h2>
               <p className="mt-2 text-gray-300">
-                Conteúdos aplicados para aumentar sua independência digital e produtividade no trabalho e estudos.
+                Conteúdos aplicados para aumentar sua independência digital e
+                produtividade no trabalho e estudos.
               </p>
             </header>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {learningOutcomes.map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <CheckCircle2 className="h-5 w-5 mt-0.5 shrink-0 text-emerald-400" aria-hidden />
-                  <span className="text-sm sm:text-base text-gray-100">{item}</span>
+                  <CheckCircle2
+                    className="h-5 w-5 mt-0.5 shrink-0 text-emerald-400"
+                    aria-hidden
+                  />
+                  <span className="text-sm sm:text-base text-gray-100">
+                    {item}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -244,7 +243,9 @@ export default function Informatica() {
 
         {/* Módulos */}
         <section aria-labelledby="modulos" className="mt-10 sm:mt-14">
-          <h2 id="modulos" className="text-xl sm:text-2xl font-semibold mb-4">Módulos do curso</h2>
+          <h2 id="modulos" className="text-xl sm:text-2xl font-semibold mb-4">
+            Módulos do curso
+          </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
             {modules.map((m) => {
@@ -268,7 +269,10 @@ export default function Informatica() {
                   <ul className="mt-4 space-y-2 text-sm text-gray-100">
                     {m.bullets.map((b) => (
                       <li key={b} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 mt-0.5 text-emerald-400 shrink-0" aria-hidden />
+                        <CheckCircle2
+                          className="h-4 w-4 mt-0.5 text-emerald-400 shrink-0"
+                          aria-hidden
+                        />
                         <span>{b}</span>
                       </li>
                     ))}
@@ -279,44 +283,11 @@ export default function Informatica() {
           </div>
         </section>
 
-        {/* Plano de Ensino */}
-        <section aria-labelledby="plano" className="mt-10 sm:mt-14">
-          <h2 id="plano" className="text-xl sm:text-2xl font-semibold mb-4">Plano de ensino (cronograma)</h2>
-          <div className="overflow-hidden rounded-2xl ring-1 ring-white/10">
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-white/10">
-                <thead className="bg-white/5">
-                  <tr>
-                    <th scope="col" className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-300">Semana</th>
-                    <th scope="col" className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-300">Tema</th>
-                    <th scope="col" className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-300">Entrega/Avaliação</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/10 bg-white/0">
-                  {plan.map((row) => (
-                    <tr key={row.week} className="hover:bg-white/[0.03]">
-                      <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-100">{row.week}</td>
-                      <td className="px-4 py-3 text-sm text-gray-100">{row.topic}</td>
-                      <td className="px-4 py-3 text-sm text-gray-300">{row.deliverable}</td>
-                    </tr>
-                  ))}
-                </tbody>
-                <tfoot className="bg-white/5">
-                  <tr>
-                    <td className="px-4 py-3 text-sm font-semibold text-gray-100" colSpan={3}>
-                      Carga horária total: {totalHours}h · Critérios de aprovação: participação + entregas semanais + projeto final (nota ≥ 7.0)
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-        </section>
-
         {/* CTA Final */}
         <section className="mt-10 sm:mt-14 flex flex-col items-center gap-4 text-center">
           <p className="text-gray-300 max-w-3xl">
-            Pronto para ganhar independência digital e aumentar sua produtividade? Garanta sua vaga e comece ainda esta turma.
+            Pronto para ganhar independência digital e aumentar sua
+            produtividade? Garanta sua vaga e comece ainda esta turma.
           </p>
           <NavLink
             to="/matricula"

@@ -107,7 +107,7 @@ export default function DataScience() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14">
           <div className="rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 p-6 sm:p-10 ring-1 ring-white/10 overflow-hidden">
             <div className="relative z-10 flex flex-col gap-4 sm:gap-6">
-              <span className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-orange-950/90">
+              <span className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-white/90">
                 <ChartNoAxesCombined className="h-4 w-4" aria-hidden />
                 Trilha Profissional Data Science
               </span>

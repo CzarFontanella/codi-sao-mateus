@@ -5,7 +5,6 @@ import {
   Code2,
   Palette,
   GitBranch,
-  Globe,
   Database,
   Shield,
   PlugZap,
@@ -164,21 +163,6 @@ export default function FullStack() {
     },
   ];
 
-  const plan = [
-    { week: "Semana 1", topic: "Visão full-stack, setup e Git", deliverable: "Repo monorepo/multi com checklist" },
-    { week: "Semana 2", topic: "Frontend: base React e roteamento", deliverable: "SPA com rotas e layout" },
-    { week: "Semana 3", topic: "Formulários, validação e UX", deliverable: "Form com validação e feedback" },
-    { week: "Semana 4", topic: "Estilos com Tailwind e componentes", deliverable: "Página responsiva e acessível" },
-    { week: "Semana 5", topic: "Backend Express: rotas e erros", deliverable: "API com endpoints CRUD e erros mapeados" },
-    { week: "Semana 6", topic: "Postgres/Prisma: modelagem e seeds", deliverable: "Schema relacional + migrations + seeds" },
-    { week: "Semana 7", topic: "Auth (JWT) e autorização (RBAC)", deliverable: "Fluxo login/refresh + rotas protegidas" },
-    { week: "Semana 8", topic: "React Query e consumo de API", deliverable: "Lista/Detalhe com cache e paginação" },
-    { week: "Semana 9", topic: "Uploads, emails e jobs", deliverable: "Upload + email transacional + fila" },
-    { week: "Semana 10", topic: "Docs (OpenAPI) e observabilidade", deliverable: "Swagger navegável + logs/métricas" },
-    { week: "Semana 11", topic: "Docker, envs e deploy", deliverable: "Stack dockerizada + preview deploy" },
-    { week: "Semana 12", topic: "Projeto integrador (capstone)", deliverable: "Entrega final publicada + apresentação" },
-  ];
-
   const totalHours = modules.reduce((acc, m) => acc + m.hours, 0);
 
   return (
@@ -188,8 +172,8 @@ export default function FullStack() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14">
           <div className="rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-800 p-6 sm:p-10 ring-1 ring-white/10 overflow-hidden">
             <div className="relative z-10 flex flex-col gap-4 sm:gap-6">
-              <span className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-emerald-50/90">
-                <Globe className="h-4 w-4" aria-hidden />
+              <span className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-white/90">
+                <Layers className="h-4 w-4" aria-hidden />
                 Trilha Profissional Full-Stack
               </span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight drop-shadow">
@@ -197,8 +181,8 @@ export default function FullStack() {
               </h1>
               <p className="max-w-3xl text-base sm:text-lg text-emerald-50/95">
                 Construa uma aplicação completa, com frontend em React, backend
-                em Node/Express, banco PostgreSQL/Prisma, testes, observabilidade
-                e deploy com Docker e CI/CD.
+                em Node/Express, banco PostgreSQL/Prisma, testes,
+                observabilidade e deploy com Docker e CI/CD.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 text-emerald-50/95">
@@ -244,24 +228,38 @@ export default function FullStack() {
       </header>
 
       {/* MAIN (alvo do scroll externo) */}
-      <main id="site-main" className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+      <main
+        id="site-main"
+        className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14"
+      >
         {/* O que você vai aprender */}
-        <section aria-labelledby="aprendizado" className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+        <section
+          aria-labelledby="aprendizado"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8"
+        >
           <article className="lg:col-span-2 rounded-2xl ring-1 ring-white/10 bg-white/5 p-6 sm:p-8">
             <header className="mb-4">
-              <h2 id="aprendizado" className="text-xl sm:text-2xl font-semibold">
+              <h2
+                id="aprendizado"
+                className="text-xl sm:text-2xl font-semibold"
+              >
                 O que você vai aprender
               </h2>
               <p className="mt-2 text-gray-300">
-                Das bases de UI ao domínio do servidor e banco — integrando
-                tudo em um produto publicável e observável.
+                Das bases de UI ao domínio do servidor e banco — integrando tudo
+                em um produto publicável e observável.
               </p>
             </header>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {learningOutcomes.map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <CheckCircle2 className="h-5 w-5 mt-0.5 shrink-0 text-emerald-300" aria-hidden />
-                  <span className="text-sm sm:text-base text-gray-100">{item}</span>
+                  <CheckCircle2
+                    className="h-5 w-5 mt-0.5 shrink-0 text-emerald-300"
+                    aria-hidden
+                  />
+                  <span className="text-sm sm:text-base text-gray-100">
+                    {item}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -300,7 +298,9 @@ export default function FullStack() {
 
         {/* Módulos */}
         <section aria-labelledby="modulos" className="mt-10 sm:mt-14">
-          <h2 id="modulos" className="text-xl sm:text-2xl font-semibold mb-4">Módulos do curso</h2>
+          <h2 id="modulos" className="text-xl sm:text-2xl font-semibold mb-4">
+            Módulos do curso
+          </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
             {modules.map((m) => {
@@ -324,7 +324,10 @@ export default function FullStack() {
                   <ul className="mt-4 space-y-2 text-sm text-gray-100">
                     {m.bullets.map((b) => (
                       <li key={b} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 mt-0.5 text-emerald-300 shrink-0" aria-hidden />
+                        <CheckCircle2
+                          className="h-4 w-4 mt-0.5 text-emerald-300 shrink-0"
+                          aria-hidden
+                        />
                         <span>{b}</span>
                       </li>
                     ))}
@@ -335,44 +338,11 @@ export default function FullStack() {
           </div>
         </section>
 
-        {/* Plano de Ensino */}
-        <section aria-labelledby="plano" className="mt-10 sm:mt-14">
-          <h2 id="plano" className="text-xl sm:text-2xl font-semibold mb-4">Plano de ensino (cronograma)</h2>
-          <div className="overflow-hidden rounded-2xl ring-1 ring-white/10">
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-white/10">
-                <thead className="bg-white/5">
-                  <tr>
-                    <th scope="col" className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-300">Semana</th>
-                    <th scope="col" className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-300">Tema</th>
-                    <th scope="col" className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-300">Entrega/Avaliação</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/10 bg-white/0">
-                  {plan.map((row) => (
-                    <tr key={row.week} className="hover:bg-white/[0.03]">
-                      <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-100">{row.week}</td>
-                      <td className="px-4 py-3 text-sm text-gray-100">{row.topic}</td>
-                      <td className="px-4 py-3 text-sm text-gray-300">{row.deliverable}</td>
-                    </tr>
-                  ))}
-                </tbody>
-                <tfoot className="bg-white/5">
-                  <tr>
-                    <td className="px-4 py-3 text-sm font-semibold text-gray-100" colSpan={3}>
-                      Carga horária total: {totalHours}h · Critérios de aprovação: participação + entregas semanais + projeto final (nota ≥ 7.0)
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-        </section>
-
         {/* CTA Final */}
         <section className="mt-10 sm:mt-14 flex flex-col items-center gap-4 text-center">
           <p className="text-gray-300 max-w-3xl">
-            Quer dominar o fluxo completo e publicar seu produto? Garanta sua vaga e finalize o capstone em produção.
+            Quer dominar o fluxo completo e publicar seu produto? Garanta sua
+            vaga e finalize o capstone em produção.
           </p>
           <NavLink
             to="/matricula"
