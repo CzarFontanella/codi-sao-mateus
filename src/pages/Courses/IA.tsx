@@ -104,12 +104,9 @@ export default function IA() {
                 IA — do prompt ao produto
               </h1>
               <p className="max-w-3xl text-base sm:text-lg text-white/95">
-                Prepare-se para atuar com as ferramentas mais avançadas de IA
-                Generativa em um curso 100% prático. Você vai aprender desde os
-                fundamentos de IA e engenharia de prompts, passando por criação
+                Fundamentos de IA e engenharia de prompts, passando por criação
                 de IAs sem código com OpenAI Premium, até desenvolvimento com
-                Python e API da OpenAI. No final, você sai com projetos reais no
-                portfólio e um projeto final apresentado como case profissional.
+                Python e API da OpenAI. Projetos reais apresentados como case profissional.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 text-white/95">
@@ -189,12 +186,6 @@ export default function IA() {
           <aside className="rounded-2xl ring-1 ring-white/10 bg-white/5 p-6 sm:p-8">
             <h3 className="text-lg font-semibold">Informações rápidas</h3>
             <dl className="mt-4 space-y-3 text-gray-200">
-              <div className="flex items-start justify-between gap-3">
-                <dt className="text-sm">Público-alvo</dt>
-                <dd className="text-sm text-gray-100 text-right">
-                  Devs e analistas que querem levar IA ao ambiente produtivo.
-                </dd>
-              </div>
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Pré-requisitos</dt>
                 <dd className="text-sm text-gray-100 text-right">
