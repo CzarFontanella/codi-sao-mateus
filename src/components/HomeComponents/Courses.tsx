@@ -18,7 +18,7 @@ export default function Courses() {
       title: "Front End",
       icon: Palette, // <-- componente
       tagline: "Interfaces modernas e responsivas.",
-      bullets: ["React + Vite", "Tailwind CSS", "Acessibilidade (a11y)"],
+      bullets: ["React + Vite", "Tailwind CSS", "UI/UX"],
       cta: "Quero construir UIs",
       href: "/cursos/frontend",
       accent: "from-fuchsia-500 to-violet-800",

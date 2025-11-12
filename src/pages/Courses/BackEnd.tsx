@@ -1,22 +1,16 @@
 // BackendCourse.tsx
 import {
   Database,
-  Server,
   Shield,
-  KeyRound,
   Globe,
-  Boxes,
-  TerminalSquare,
   PlugZap,
-  FileCode,
   BugPlay,
-  Gauge,
-  Rocket,
   CheckCircle2,
   Clock,
   Users,
   BookOpen,
   Zap,
+  Brain,
 } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -32,134 +26,74 @@ export default function BackEnd() {
   };
 
   const learningOutcomes = [
-    "Construir APIs REST escaláveis com Node.js e Express",
-    "Modelar dados com PostgreSQL e Prisma (migrations, seeds)",
-    "Autenticação e autorização seguras (JWT/OAuth2, RBAC)",
-    "Testes automatizados com Jest/Supertest e qualidade contínua",
-    "Observabilidade: logs estruturados, métricas e tracing",
-    "Deploy com Docker, Compose e CI/CD (pipeline do zero)",
+    "Desenvolver lógica e algoritmos em C, Python e C#.",
+    "Programar aplicações backend e automações.",
+    "Criar projetos de Inteligência Artificial com Python.",
+    "Construir APIs modernas com Node.js.",
+    "Gerenciar bancos de dados SQL e MongoDB.",
+    "Aplicar conhecimentos em projetos práticos completos.",
   ];
 
   const modules = [
     {
-      title: "Módulo 1 — Fundamentos & Ambiente",
-      hours: 4,
+      title: "Módulo 1 — Algoritmos com C",
+      hours: 30,
       bullets: [
-        "Node.js, npm/pnpm, TypeScript no backend",
-        "Padrões HTTP, REST e status codes",
-        "Estrutura de projeto e scripts NPM",
+        "Desenvolver raciocínio lógico e base em programação.",
+        "Aprender estruturas de controle, variáveis e funções em C.",
+        "Criar algoritmos do zero para resolver problemas.",
       ],
-      icon: Server,
+      icon: Brain,
     },
     {
-      title: "Módulo 2 — Express & Camada Web",
-      hours: 8,
+      title: "Módulo 2 — Lógica com Python & C#",
+      hours: 30,
       bullets: [
-        "Rotas, controladores e middlewares",
-        "Tratamento de erros e DTOs",
-        "Paginação, filtros e versionamento de API",
+        "Dominar lógica de programação aplicável em múltiplas linguagens.",
+        "Aprender Python e C# para backend, automação e scripts.",
+        "Criar soluções práticas e programáveis com diferentes sintaxes.",
       ],
       icon: Globe,
     },
     {
-      title: "Módulo 3 — PostgreSQL & Prisma",
-      hours: 8,
+      title: "Módulo 3 — Inteligência Artificial",
+      hours: 30,
       bullets: [
-        "Modelagem relacional e migrations",
-        "Prisma Client, relations e performance",
-        "Seeds, transações e repositorios",
+        "Criar projetos de IA usando Python.",
+        "Desenvolver automações, análise de dados e modelos inteligentes.",
+        "Implementar agentes e soluções baseadas em inteligência artificial.",
       ],
       icon: Database,
     },
     {
-      title: "Módulo 4 — Autenticação & Segurança",
-      hours: 8,
+      title: "Módulo 4 — Node JS",
+      hours: 30,
       bullets: [
-        "JWT, refresh tokens e expiração",
-        "RBAC/ABAC, rate limit e CORS",
-        "Criptografia, hashing e OWASP Top 10",
+        "Construir APIs modernas com Node.js, Express e Fastify.",
+        "Integrar aplicações com múltiplos serviços e endpoints.",
+        "Aprender práticas de backend escalável e manutenção de código.",
       ],
       icon: Shield,
     },
     {
-      title: "Módulo 5 — Testes & Qualidade",
-      hours: 6,
+      title: "Módulo 5 — Bancos de Dados Estruturados & Não Estruturados",
+      hours: 30,
       bullets: [
-        "Jest/Vitest e Supertest (HTTP e unidade)",
-        "Mocks, factories e coverage",
-        "CI inicial com execução de testes",
+        "Trabalhar com SQL e MongoDB, criando queries e modelagens.",
+        "Integrar bancos de dados a aplicações via Prisma e Mongoose.",
+        "Dominar gestão de dados estruturados e não estruturados.",
       ],
       icon: BugPlay,
     },
     {
-      title: "Módulo 6 — Uploads, Tarefas & Serviços",
-      hours: 4,
+      title: "Módulo 6 — Práticas",
+      hours: 30,
       bullets: [
-        "Uploads (streaming/multer) e emails transacionais",
-        "Jobs assíncronos com fila (BullMQ/Redis)",
-        "Integração com serviços externos",
+        "Aplicar conhecimentos em projetos completos combinando linguagens e frameworks.",
+        "Criar integrações Node+SQL, Node+Prisma, Node+Mongo e mais.",
+        "Desenvolver soluções práticas e funcionais para problemas reais.",
       ],
       icon: PlugZap,
-    },
-    {
-      title: "Módulo 7 — Cache & Escalabilidade",
-      hours: 6,
-      bullets: [
-        "Cache de leitura/escrita com Redis",
-        "Invalidação e estratégias (TTL, cache keys)",
-        "Concorrência, pooling e limites",
-      ],
-      icon: Boxes,
-    },
-    {
-      title: "Módulo 8 — Documentação & DX",
-      hours: 4,
-      bullets: [
-        "OpenAPI/Swagger e contract-first",
-        "Coleções HTTP (Insomnia/Postman)",
-        "Guides e exemplos para consumidores",
-      ],
-      icon: FileCode,
-    },
-    {
-      title: "Módulo 9 — Observabilidade",
-      hours: 4,
-      bullets: [
-        "Logs estruturados (Pino/Winston)",
-        "Métricas e tracing (OpenTelemetry)",
-        "Dashboards e alertas básicos",
-      ],
-      icon: Gauge,
-    },
-    {
-      title: "Módulo 10 — Docker & CI/CD",
-      hours: 6,
-      bullets: [
-        "Dockerfile multi-stage e Compose",
-        "Variáveis de ambiente e secrets",
-        "Pipeline: build, test, release e deploy",
-      ],
-      icon: TerminalSquare,
-    },
-    {
-      title: "Módulo 11 — Arquitetura & Boas Práticas",
-      hours: 4,
-      bullets: [
-        "Clean Architecture, SOLID e camadas",
-        "Mapeamento de erros de domínio",
-        "Observabilidade aplicada à arquitetura",
-      ],
-      icon: KeyRound,
-    },
-    {
-      title: "Módulo 12 — Projeto Integrador",
-      hours: 8,
-      bullets: [
-        "API completa com autenticação e documentação",
-        "Integrações, cache e jobs assíncronos",
-        "Publicação e apresentação final",
-      ],
-      icon: Rocket,
     },
   ];
 
@@ -180,19 +114,20 @@ export default function BackEnd() {
                 Back End — APIs escaláveis com Node, Postgres e Docker
               </h1>
               <p className="max-w-3xl text-base sm:text-lg text-white/95">
-                Do desenho da API ao deploy: Express, PostgreSQL/Prisma,
-                autenticação robusta, testes, observabilidade e pipeline de
-                entrega contínua.
+                Programação e IA: de Algoritmos em C a Python, C#, Inteligência
+                Artificial aplicada e backend com Node.js, Prisma, SQL, MongoDB
+                e Express. Ideal para quem quer dominar do zero à prática com
+                projetos reais.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 text-white/95">
                 <span className="inline-flex items-center gap-2">
                   <Clock className="h-5 w-5" aria-hidden />
-                  {totalHours}h totais (12 semanas)
+                  {totalHours}h totais
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <Users className="h-5 w-5" aria-hidden />
-                  Intermediário · Turmas reduzidas
+                  Avançado
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <BookOpen className="h-5 w-5" aria-hidden />
@@ -209,12 +144,6 @@ export default function BackEnd() {
                   <Zap className="h-5 w-5" />
                   Matricule-se
                 </NavLink>
-                <a
-                  href="#site-main"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-900/20 text-white px-5 py-3 text-sm sm:text-base font-semibold ring-1 ring-white/10 hover:bg-cyan-900/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70 focus-visible:ring-offset-cyan-800 transition"
-                >
-                  Ver conteúdos
-                </a>
               </div>
             </div>
 
@@ -277,19 +206,19 @@ export default function BackEnd() {
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Pré-requisitos</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  JS/TS básico e HTTP essencial
+                  Noções de Informática e Lógica
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Metodologia</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Aulas práticas, TDD leve e projeto integrador
+                  Aulas práticas e estudos de caso.
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Certificado</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Emissão após aprovação (≥ 70%)
+                  Emissão após aprovação (≥ 60%)
                 </dd>
               </div>
             </dl>
@@ -324,7 +253,10 @@ export default function BackEnd() {
                   <ul className="mt-4 space-y-2 text-sm text-gray-100">
                     {m.bullets.map((b) => (
                       <li key={b} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 mt-0.5 text-sky-300 shrink-0" aria-hidden />
+                        <CheckCircle2
+                          className="h-4 w-4 mt-0.5 text-sky-300 shrink-0"
+                          aria-hidden
+                        />
                         <span>{b}</span>
                       </li>
                     ))}

@@ -213,7 +213,7 @@ export default function FrontEnd() {
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Metodologia</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Aulas práticas, desafios guiados e projeto integrador
+                  Aulas práticas e estudos de caso.
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
