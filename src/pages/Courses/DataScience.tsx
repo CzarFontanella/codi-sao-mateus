@@ -38,7 +38,7 @@ export default function DataScience() {
   const modules = [
     {
       title: "Módulo 1 — Fundamentos da Programação em Python",
-      hours: 20,
+      hours: 30,
       bullets: [
         "Aprenda os conceitos básicos da linguagem Python.",
         "Trabalhe com variáveis, operadores e estruturas de decisão e repetição.",
@@ -48,7 +48,7 @@ export default function DataScience() {
     },
     {
       title: "Módulo 2 — Programação Orientada a Objetos (POO)",
-      hours: 20,
+      hours: 30,
       bullets: [
         "Entenda o funcionamento de funções e métodos em Python.",
         "Aplique os pilares da POO: classes, objetos e herança.",
@@ -58,7 +58,7 @@ export default function DataScience() {
     },
     {
       title: "Módulo 3 — Inteligência Artificial com Python",
-      hours: 20,
+      hours: 30,
       bullets: [
         "Use IA para gerar e otimizar códigos Python automaticamente.",
         "Crie bots com personalidades e trate erros de forma inteligente.",
@@ -68,7 +68,7 @@ export default function DataScience() {
     },
     {
       title: "Módulo 4 — Manipulação e Análise de Dados com Numpy e Pandas",
-      hours: 20,
+      hours: 30,
       bullets: [
         "Trabalhe com arrays e matrizes utilizando NumPy.",
         "Analise, limpe e agrupe dados com Pandas.",
@@ -78,7 +78,7 @@ export default function DataScience() {
     },
     {
       title: "Módulo 5 — Coleta e Integração de Dados (Web Scraping & APIs)",
-      hours: 20,
+      hours: 30,
       bullets: [
         "Extraia informações da web com Beautiful Soup.",
         "Acesse e converta dados de APIs em JSON e XML.",
@@ -88,7 +88,7 @@ export default function DataScience() {
     },
     {
       title: "Módulo 6 — Estatística e Ciência de Dados Aplicada",
-      hours: 20,
+      hours: 30,
       bullets: [
         "Domine fundamentos de estatística e probabilidade.",
         "Aplique testes de hipótese, regressão e análise de clusters (K-Means, DBSCAN, HAC).",

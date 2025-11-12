@@ -37,7 +37,7 @@ export default function FrontEnd() {
   const modules = [
     {
       title: "Módulo 1 — Introdução ao Desenvolvimento Web",
-      hours: 12,
+      hours: 30,
       bullets: [
         "Aprenda HTML e CSS para estruturar e estilizar páginas.",
         "Use Flexbox para criar layouts modernos e responsivos.",
@@ -47,7 +47,7 @@ export default function FrontEnd() {
     },
     {
       title: "Módulo 2 — JavaScript Essencial",
-      hours: 12,
+      hours: 30,
       bullets: [
         "Domine variáveis, funções, loops e eventos.",
         "Manipule o DOM e trabalhe com JSON.",
@@ -57,7 +57,7 @@ export default function FrontEnd() {
     },
     {
       title: "Módulo 3 — Projetos Práticos",
-      hours: 12,
+      hours: 30,
       bullets: [
         "Reproduza sites inspirados em Netflix, YouTube e Google.",
         "Desenvolva funcionalidades de plataformas sociais como Twitter e LinkedIn.",
@@ -67,7 +67,7 @@ export default function FrontEnd() {
     },
     {
       title: "Módulo 4 — Frameworks",
-      hours: 12,
+      hours: 30,
       bullets: [
         "Aprenda React e Vue.js do básico ao avançado.",
         "Crie componentes, formulários e páginas interativas.",
@@ -77,7 +77,7 @@ export default function FrontEnd() {
     },
     {
       title: "Módulo 5 — TypeScript",
-      hours: 12,
+      hours: 30,
       bullets: [
         "Escreva códigos mais organizados e seguros.",
         "Evite erros comuns com tipagem estática.",
@@ -87,7 +87,7 @@ export default function FrontEnd() {
     },
     {
       title: "Módulo 6 — UI/UX",
-      hours: 12,
+      hours: 30,
       bullets: [
         "Entenda princípios de design e experiência do usuário.",
         "Crie interfaces funcionais e esteticamente agradáveis.",
