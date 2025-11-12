@@ -1,19 +1,16 @@
 // FrontendCourse.tsx
 import {
   Palette,
-  Code2,
-  MonitorSmartphone,
   LayoutDashboard,
-  Accessibility,
-  GitBranch,
-  Search,
-  Gauge,
-  Rocket,
   CheckCircle2,
   Clock,
   Users,
   BookOpen,
   Zap,
+  Brain,
+  Braces,
+  FileUser,
+  TypeOutline,
 } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -29,104 +26,74 @@ export default function FrontEnd() {
   };
 
   const learningOutcomes = [
-    "Construir SPAs modernas com React + Vite",
-    "Estilizar com Tailwind CSS e boas práticas de design",
-    "Aplicar acessibilidade (a11y) e SEO técnico",
-    "Consumir APIs REST, lidar com estados e cache",
-    "Roteamento, formulários e validação",
-    "Testes, performance e deploy profissional",
+    "Desenvolver páginas web modernas e responsivas.",
+    "Interatividade em sites manipulando DOM, eventos e dados.",
+    "Criar projetos completos inspirados em plataformas reais.",
+    "Construir aplicações compondo interfaces, formulários e consumindo APIs.",
+    "Escrever código mais seguro e organizado.",
+    "Criar interfaces funcionais, atraentes e centradas no usuário.",
   ];
 
   const modules = [
     {
-      title: "Módulo 1 — Fundamentos Web & Ambiente",
-      hours: 4,
+      title: "Módulo 1 — Introdução ao Desenvolvimento Web",
+      hours: 12,
       bullets: [
-        "HTML semântico, CSS moderno, ES202x",
-        "Ferramentas: Node, pnpm/npm, Vite",
-        "Git & GitHub: fluxo básico",
+        "Aprenda HTML e CSS para estruturar e estilizar páginas.",
+        "Use Flexbox para criar layouts modernos e responsivos.",
+        "Desenvolva páginas interativas do zero.",
       ],
-      icon: MonitorSmartphone,
+      icon: Brain,
     },
     {
-      title: "Módulo 2 — React Essencial",
-      hours: 10,
+      title: "Módulo 2 — JavaScript Essencial",
+      hours: 12,
       bullets: [
-        "Componentes, props e estado",
-        "Hooks fundamentais (useState/useEffect)",
-        "Padrões de composição",
+        "Domine variáveis, funções, loops e eventos.",
+        "Manipule o DOM e trabalhe com JSON.",
+        "Crie interatividade e dinamismo em páginas web.",
       ],
-      icon: Code2,
+      icon: Braces,
     },
     {
-      title: "Módulo 3 — Estilos com Tailwind",
-      hours: 6,
+      title: "Módulo 3 — Projetos Práticos",
+      hours: 12,
       bullets: [
-        "Design tokens e utilitários",
-        "Layouts responsivos (Grid/Flex)",
-        "Componentização e boas práticas",
+        "Reproduza sites inspirados em Netflix, YouTube e Google.",
+        "Desenvolva funcionalidades de plataformas sociais como Twitter e LinkedIn.",
+        "Aplique conhecimentos de HTML, CSS e JavaScript em projetos reais.",
       ],
       icon: Palette,
     },
     {
-      title: "Módulo 4 — Roteamento e Formulários",
-      hours: 6,
+      title: "Módulo 4 — Frameworks",
+      hours: 12,
       bullets: [
-        "React Router (rotas, params, loaders)",
-        "Formulários controlados e não controlados",
-        "Validação com Zod/Yup",
+        "Aprenda React e Vue.js do básico ao avançado.",
+        "Crie componentes, formulários e páginas interativas.",
+        "Consuma APIs e integre funcionalidades complexas.",
       ],
       icon: LayoutDashboard,
     },
     {
-      title: "Módulo 5 — Consumo de APIs e Estado",
-      hours: 8,
+      title: "Módulo 5 — TypeScript",
+      hours: 12,
       bullets: [
-        "Fetch/axios, erros e retries",
-        "Gerência de estado local e global",
-        "React Query (cache, revalidação)",
+        "Escreva códigos mais organizados e seguros.",
+        "Evite erros comuns com tipagem estática.",
+        "Prepare projetos para ambientes profissionais e escaláveis.",
       ],
-      icon: GitBranch,
+      icon: TypeOutline,
     },
     {
-      title: "Módulo 6 — Acessibilidade e SEO",
-      hours: 6,
+      title: "Módulo 6 — UI/UX",
+      hours: 12,
       bullets: [
-        "ARIA, foco, navegação por teclado",
-        "Boas práticas de contraste e semântica",
-        "Meta tags, sitemaps e pré-render",
+        "Entenda princípios de design e experiência do usuário.",
+        "Crie interfaces funcionais e esteticamente agradáveis.",
+        "Aplique boas práticas de usabilidade em projetos web.",
       ],
-      icon: Accessibility,
-    },
-    {
-      title: "Módulo 7 — Testes e Qualidade",
-      hours: 6,
-      bullets: [
-        "Jest/Vitest: testes de unidade",
-        "Testing Library: testes de UI",
-        "CI básico e coverage",
-      ],
-      icon: Search,
-    },
-    {
-      title: "Módulo 8 — Performance & Deploy",
-      hours: 6,
-      bullets: [
-        "Code-splitting, lazy, memos",
-        "Lighthouse e Web Vitals",
-        "Deploy: Vercel/Netlify/Cloudflare Pages",
-      ],
-      icon: Gauge,
-    },
-    {
-      title: "Módulo 9 — Projeto Integrador",
-      hours: 8,
-      bullets: [
-        "Design → Implementação end-to-end",
-        "Integração com API real",
-        "Publicação e apresentação",
-      ],
-      icon: Rocket,
+      icon: FileUser,
     },
   ];
 
@@ -147,19 +114,21 @@ export default function FrontEnd() {
                 Front End — React, Tailwind e Deploy moderno
               </h1>
               <p className="max-w-3xl text-base sm:text-lg text-white/95">
-                Construa interfaces modernas e acessíveis com React, estilização
-                ágil com Tailwind e boas práticas de qualidade, performance e
-                deploy. Do zero ao projeto publicado.
+                Foco prático em HTML, CSS (incluindo Tailwind), JavaScript,
+                React, Vue.js, TypeScript, UI/UX e Git. Ideal para quem quer
+                criar sites modernos, dominar ferramentas do mercado e
+                desenvolver projetos inspirados em plataformas como Netflix e
+                Spotify.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 text-white/95">
                 <span className="inline-flex items-center gap-2">
                   <Clock className="h-5 w-5" aria-hidden />
-                  {totalHours}h totais (12 semanas)
+                  {totalHours}h totais
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <Users className="h-5 w-5" aria-hidden />
-                  Iniciante/Intermediário · Turmas reduzidas
+                  Avançado
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <BookOpen className="h-5 w-5" aria-hidden />
@@ -176,12 +145,6 @@ export default function FrontEnd() {
                   <Zap className="h-5 w-5" />
                   Matricule-se
                 </NavLink>
-                <a
-                  href="#site-main"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-violet-900/20 text-white px-5 py-3 text-sm sm:text-base font-semibold ring-1 ring-white/10 hover:bg-violet-900/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70 focus-visible:ring-offset-violet-800 transition"
-                >
-                  Ver conteúdos
-                </a>
               </div>
             </div>
 
@@ -244,7 +207,7 @@ export default function FrontEnd() {
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Pré-requisitos</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Lógica básica e curiosidade (JavaScript introdutório ajuda)
+                  Noções de Informatica e Lógica
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
@@ -256,7 +219,7 @@ export default function FrontEnd() {
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Certificado</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Emissão após aprovação (≥ 70%)
+                  Emissão após aprovação (≥ 60%)
                 </dd>
               </div>
             </dl>
