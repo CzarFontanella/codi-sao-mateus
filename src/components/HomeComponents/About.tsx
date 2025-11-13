@@ -14,10 +14,29 @@ import {
   BookOpen,
   ArrowRight,
 } from "lucide-react";
-import { NavLink } from "react-router-dom";
-import AccentLine from "../AccentLine";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 export default function About() {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  // navega e rola até um id específico na HOME, sem exibir hash
+  function goto(
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetPath: string,
+    scrollToId: string
+  ) {
+    e.preventDefault();
+    if (pathname === targetPath) {
+      document.getElementById(scrollToId)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    } else {
+      navigate(targetPath, { state: { scrollToId } });
+    }
+  }
+
   const accent = "#A243D2";
 
   const values = [
@@ -109,24 +128,14 @@ export default function About() {
             </div>
 
             <h1 className="mt-4 text-3xl sm:text-5xl font-semibold tracking-tight">
-              Transformamos aprendizado em <span className="text-[#A243D2]">carreira</span>
+              Transformamos aprendizado em{" "}
+              <span className="text-[#A243D2]">carreira</span>
             </h1>
             <p className="mt-3 sm:mt-4 max-w-2xl text-base sm:text-lg text-white/70">
-              A Codi Academy é uma escola de tecnologia focada em prática, mentoria e
-              projetos reais. Nossa missão é acelerar sua evolução e abrir portas no
-              mercado de trabalho.
+              A Codi Academy é uma escola de tecnologia focada em prática,
+              mentoria e projetos reais. Nossa missão é acelerar sua evolução e
+              abrir portas no mercado de trabalho.
             </p>
-
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <NavLink
-                to="/enroll"
-                className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-                style={{ backgroundColor: accent }}
-              >
-                Começar agora
-                <ArrowRight className="w-4 h-4" />
-              </NavLink>
-            </div>
 
             {/* badges */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-white/60">
@@ -142,15 +151,6 @@ export default function About() {
             </div>
           </div>
         </div>
-
-        {/* linha de destaque */}
-        <div
-          className="mt-10 h-[2px] w-full"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, #A243D2 20%, #7C3AED 50%, #A243D2 80%, transparent)",
-          }}
-        />
       </section>
 
       {/* VALORES (cards com accent sólida) */}
@@ -159,7 +159,9 @@ export default function About() {
           <header className="mb-8 sm:mb-12 text-center">
             <div className="inline-flex items-center gap-2 rounded-xl ring-1 ring-white/10 px-3 py-1.5 bg-gradient-to-r from-white/5 to-white/[0.03]">
               <Target className="w-5 h-5 text-white/80" />
-              <span className="font-semibold text-white/80">Nossos valores</span>
+              <span className="font-semibold text-white/80">
+                Nossos valores
+              </span>
             </div>
             <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight">
               O que guia nossa jornada
@@ -185,7 +187,10 @@ export default function About() {
                   />
                   {/* card */}
                   <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/10 bg-gradient-to-b from-white/5 to-white/[0.03] h-full">
-                    <div className="h-1 w-full" style={{ backgroundColor: accent }} />
+                    <div
+                      className="h-1 w-full"
+                      style={{ backgroundColor: accent }}
+                    />
                     <div className="p-6 flex flex-col h-full">
                       <div className="inline-flex w-fit items-center justify-center rounded-xl ring-1 ring-white/10 bg-white/5 p-3 mb-4">
                         <Icon className="w-6 h-6 text-white" />
@@ -213,20 +218,23 @@ export default function About() {
                 <div className="text-2xl sm:text-3xl font-semibold text-white">
                   {s.value}
                 </div>
-                <div className="mt-1 text-xs sm:text-sm text-white/60">{s.label}</div>
+                <div className="mt-1 text-xs sm:text-sm text-white/60">
+                  {s.label}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
-            <AccentLine />
       {/* COMO ENSINAMOS (pilares) */}
       <section className="py-10 sm:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <header className="mb-8 sm:mb-12 text-center">
             <div className="inline-flex items-center gap-2 rounded-xl ring-1 ring-white/10 px-3 py-1.5 bg-gradient-to-r from-white/5 to-white/[0.03]">
               <BookOpen className="w-5 h-5 text-white/80" />
-              <span className="font-semibold text-white/80">Como ensinamos</span>
+              <span className="font-semibold text-white/80">
+                Como ensinamos
+              </span>
             </div>
             <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight">
               Metodologia orientada a projetos
@@ -241,7 +249,10 @@ export default function About() {
                   key={p.title}
                   className="relative rounded-2xl overflow-hidden ring-1 ring-white/10 bg-gradient-to-b from-white/5 to-white/[0.03]"
                 >
-                  <div className="h-1 w-full" style={{ backgroundColor: accent }} />
+                  <div
+                    className="h-1 w-full"
+                    style={{ backgroundColor: accent }}
+                  />
                   <div className="p-6">
                     <div className="inline-flex w-fit items-center justify-center rounded-xl ring-1 ring-white/10 bg-white/5 p-3 mb-4">
                       <Icon className="w-6 h-6" />
@@ -281,14 +292,15 @@ export default function About() {
                 Pronto para dar o próximo passo?
               </h3>
               <p className="mt-2 text-sm sm:text-base text-white/70 max-w-2xl mx-auto">
-                Escolha sua trilha e comece hoje. Você terá apoio próximo, projetos
-                práticos e um plano claro para alcançar seus objetivos.
+                Escolha sua trilha e comece hoje. Você terá apoio próximo,
+                projetos práticos e um plano claro para alcançar seus objetivos.
               </p>
               <div className="mt-6 flex items-center justify-center gap-3">
                 <NavLink
-                  to="/enroll"
+                  to="/matricula"
                   className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                   style={{ backgroundColor: accent }}
+                  onClick={(e) => goto(e, "/matricula", "site-main")}
                 >
                   Matricule-se Já
                   <ArrowRight className="w-4 h-4" />

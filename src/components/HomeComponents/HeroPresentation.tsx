@@ -1,5 +1,4 @@
-import { ArrowRight, Sparkles } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { Sparkles } from "lucide-react";
 
 type HeroProps = {
   title?: string;
@@ -13,10 +12,7 @@ export default function HeroPresentation({
   title = "Programe o seu",
   highlight = "Futuro",
   subtitle = "Nossa missão é transformar vidas ao capacitar entusiastas de tecnologia para se tornarem profissionais de alta excelência, prontos para atender às demandas do mercado de TI.",
-  ctaLabel = "Explorar Cursos",
-  ctaHref = "/courses",
 }: HeroProps) {
-  const accent = "#A243D2";
 
   return (
     <section className="relative isolate overflow-hidden bg-gray-950 text-white">
@@ -49,25 +45,6 @@ export default function HeroPresentation({
         <p className="mt-4 max-w-2xl text-base sm:text-lg text-white/70 animate-[fadeInUp_0.6s_ease_120ms_both]">
           {subtitle}
         </p>
-
-        {/* Ações */}
-        <div className="mt-8 flex flex-wrap items-center gap-3 animate-[fadeInUp_0.6s_ease_180ms_both]">
-          <NavLink
-            to={ctaHref}
-            className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-            style={{ backgroundColor: accent }}
-          >
-            {ctaLabel}
-            <ArrowRight className="w-4 h-4" />
-          </NavLink>
-
-          <NavLink
-            to="/about"
-            className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold ring-1 ring-white/10 bg-white/5 hover:bg-white/10"
-          >
-            Conheça a Codi
-          </NavLink>
-        </div>
       </div>
     </section>
   );
