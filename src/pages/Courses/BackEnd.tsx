@@ -1,16 +1,15 @@
 // BackendCourse.tsx
 import {
   Database,
-  Shield,
-  Globe,
-  PlugZap,
-  BugPlay,
   CheckCircle2,
   Clock,
   Users,
   BookOpen,
   Zap,
   Brain,
+  Bot,
+  Braces,
+  Hexagon,
 } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -53,7 +52,7 @@ export default function BackEnd() {
         "Aprender Python e C# para backend, automação e scripts.",
         "Criar soluções práticas e programáveis com diferentes sintaxes.",
       ],
-      icon: Globe,
+      icon: Braces,
     },
     {
       title: "Módulo 3 — Inteligência Artificial",
@@ -63,7 +62,7 @@ export default function BackEnd() {
         "Desenvolver automações, análise de dados e modelos inteligentes.",
         "Implementar agentes e soluções baseadas em inteligência artificial.",
       ],
-      icon: Database,
+      icon: Bot,
     },
     {
       title: "Módulo 4 — Node JS",
@@ -73,7 +72,7 @@ export default function BackEnd() {
         "Integrar aplicações com múltiplos serviços e endpoints.",
         "Aprender práticas de backend escalável e manutenção de código.",
       ],
-      icon: Shield,
+      icon: Hexagon,
     },
     {
       title: "Módulo 5 — Bancos de Dados Estruturados & Não Estruturados",
@@ -83,7 +82,7 @@ export default function BackEnd() {
         "Integrar bancos de dados a aplicações via Prisma e Mongoose.",
         "Dominar gestão de dados estruturados e não estruturados.",
       ],
-      icon: BugPlay,
+      icon: Database,
     },
     {
       title: "Módulo 6 — Práticas",
@@ -93,7 +92,7 @@ export default function BackEnd() {
         "Criar integrações Node+SQL, Node+Prisma, Node+Mongo e mais.",
         "Desenvolver soluções práticas e funcionais para problemas reais.",
       ],
-      icon: PlugZap,
+      icon: BookOpen,
     },
   ];
 
@@ -127,7 +126,7 @@ export default function BackEnd() {
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <Users className="h-5 w-5" aria-hidden />
-                  Avançado
+                  Intermediário
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <BookOpen className="h-5 w-5" aria-hidden />
@@ -200,7 +199,7 @@ export default function BackEnd() {
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Público-alvo</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Devs que querem dominar APIs com Node/TS
+                  Devs, iniciantes e entusiastas.
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">

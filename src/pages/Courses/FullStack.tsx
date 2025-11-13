@@ -1,22 +1,18 @@
 // FullstackCourse.tsx
 import {
   Layers,
-  MonitorSmartphone,
-  Code2,
   Palette,
-  GitBranch,
   Database,
-  Shield,
-  PlugZap,
-  Gauge,
-  TerminalSquare,
-  FileCode,
-  Rocket,
   CheckCircle2,
   Clock,
   Users,
   BookOpen,
   Zap,
+  Brain,
+  Braces,
+  Pyramid,
+  Bot,
+  SquareFunction,
 } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -32,134 +28,84 @@ export default function FullStack() {
   };
 
   const learningOutcomes = [
-    "Projetar e desenvolver uma aplicação completa (frontend + backend)",
-    "Criar SPAs com React, roteamento, formulários e consumo de APIs",
-    "Construir APIs REST com Node.js/Express, autenticação e autorização",
-    "Modelar dados com PostgreSQL e Prisma (migrations, seeds, relações)",
-    "Gerenciar estado, cache e revalidação com React Query",
-    "Testar, observar e publicar com Docker e CI/CD",
+    "Desenvolver lógica e algoritmos em C#, Python e JavaScript.",
+    "Programar aplicações backend e automações com Node.js e Python.",
+    "Criar projetos de Inteligência Artificial aplicando Python.",
+    "Construir APIs modernas e eficientes com Node.js e Express.",
+    "Gerenciar bancos de dados SQL e MongoDB de forma prática.",
+    "Aplicar conhecimentos em projetos completos combinando frontend, backend e banco de dados.",
   ];
 
   const modules = [
     {
-      title: "Módulo 1 — Fundamentos Full-Stack & Ambiente",
-      hours: 4,
+      title: "Módulo 1 — Introdução ao Desenvolvimento Web",
+      hours: 50,
       bullets: [
-        "Visão 360° (cliente/servidor/banco/deploy)",
-        "Node, pnpm/npm, TypeScript, Vite",
-        "Git/GitHub e fluxo de trabalho",
+        "Aprender HTML e CSS para estruturar e estilizar páginas.",
+        "Utilizar Flexbox para criar layouts modernos e responsivos.",
+        "Desenvolver páginas interativas do zero.",
       ],
-      icon: Layers,
+      icon: Brain,
     },
     {
-      title: "Módulo 2 — Frontend Base (React)",
-      hours: 8,
+      title: "Módulo 2 — Lógica de Programação com JavaScript",
+      hours: 50,
       bullets: [
-        "Componentes, estado e hooks essenciais",
-        "Roteamento, formulários e validação",
-        "Acessibilidade (a11y) e SEO técnico",
+        "Dominar lógica de programação e estruturas do JavaScript.",
+        "Manipular DOM, eventos e APIs.",
+        "Criar projetos práticos do básico ao avançado.",
       ],
-      icon: MonitorSmartphone,
+      icon: SquareFunction,
     },
     {
-      title: "Módulo 3 — Estilos e UI (Tailwind)",
-      hours: 6,
+      title: "Módulo 3 — Frameworks CSS & JS",
+      hours: 60,
       bullets: [
-        "Design tokens e utilitários",
-        "Layout responsivo (Flex/Grid)",
-        "Componentização e DX de estilos",
+        "Aprender React, Vue.js para desenvolvimento de interfaces.",
+        "Utilizar Bootstrap e Tailwind para estilização eficiente.",
+        "Criar interfaces modernas, dinâmicas e responsivas.",
       ],
       icon: Palette,
     },
     {
-      title: "Módulo 4 — Backend Web (Express)",
-      hours: 8,
+      title: "Módulo 4 — Python & Inteligência Artificial",
+      hours: 50,
       bullets: [
-        "Rotas, controladores e middlewares",
-        "Tratamento de erros e versionamento",
-        "Boas práticas de DTOs e validação",
+        "Aprender fundamentos de programação em Python.",
+        "Desenvolver soluções inteligentes com IA.",
+        "Criar projetos práticos aplicando algoritmos e automações.",
       ],
-      icon: Code2,
+      icon: Bot,
     },
     {
-      title: "Módulo 5 — Banco de Dados (Postgres + Prisma)",
-      hours: 8,
+      title: "Módulo 5 — Lógica de Programação com C#",
+      hours: 50,
       bullets: [
-        "Modelagem relacional e migrations",
-        "Queries, relations e performance",
-        "Seeds e transações",
+        "Aprender programação estruturada e raciocínio lógico.",
+        "Desenvolver aplicações práticas com C#.",
+        "Aplicar lógica em projetos funcionais e escaláveis.",
+      ],
+      icon: Braces,
+    },
+    {
+      title: "Módulo 6 — Node.js + Prisma + Express",
+      hours: 50,
+      bullets: [
+        "Construir APIs modernas e eficientes com Node.js e Express.",
+        "Integrar bancos de dados usando Prisma.",
+        "Aplicar boas práticas de desenvolvimento backend.",
+      ],
+      icon: Pyramid,
+    },
+    {
+      title: "Módulo 7 — Bancos de Dados Estruturados e Não Estruturados",
+      hours: 50,
+      bullets: [
+        "Trabalhar com SQL e MongoDB de forma prática.",
+        "Criar consultas, modelagens e integrações com aplicações.",
+        "Gerenciar dados estruturados e não estruturados com eficiência.",
       ],
       icon: Database,
-    },
-    {
-      title: "Módulo 6 — Autenticação & Autorização",
-      hours: 6,
-      bullets: [
-        "JWT (access/refresh), cookies e CORS",
-        "RBAC/ABAC, senhas e hashing",
-        "Boas práticas OWASP",
-      ],
-      icon: Shield,
-    },
-    {
-      title: "Módulo 7 — Consumo de API & Estado no Front",
-      hours: 6,
-      bullets: [
-        "Fetch/axios e controle de erros",
-        "React Query (cache, revalidação, mutations)",
-        "Paginação e filtros",
-      ],
-      icon: GitBranch,
-    },
-    {
-      title: "Módulo 8 — Uploads, Jobs e Integrações",
-      hours: 4,
-      bullets: [
-        "Uploads (streaming/multer) e emails",
-        "Jobs assíncronos (BullMQ/Redis)",
-        "Integrações externas",
-      ],
-      icon: PlugZap,
-    },
-    {
-      title: "Módulo 9 — Documentação, DX & Contratos",
-      hours: 4,
-      bullets: [
-        "OpenAPI/Swagger",
-        "Coleções HTTP (Insomnia/Postman)",
-        "Guides para consumidores",
-      ],
-      icon: FileCode,
-    },
-    {
-      title: "Módulo 10 — Observabilidade",
-      hours: 4,
-      bullets: [
-        "Logs estruturados e métricas",
-        "Tracing (OpenTelemetry)",
-        "Dashboards e alertas básicos",
-      ],
-      icon: Gauge,
-    },
-    {
-      title: "Módulo 11 — Docker & Deploy",
-      hours: 6,
-      bullets: [
-        "Dockerfile multi-stage e Compose",
-        "Variáveis de ambiente e secrets",
-        "Deploy: Vercel/Render/Fly/railway*",
-      ],
-      icon: TerminalSquare,
-    },
-    {
-      title: "Módulo 12 — Projeto Integrador",
-      hours: 8,
-      bullets: [
-        "Do design ao deploy com CI/CD",
-        "Autenticação, cache, uploads e docs",
-        "Apresentação e publicação final",
-      ],
-      icon: Rocket,
     },
   ];
 
@@ -180,19 +126,20 @@ export default function FullStack() {
                 Full-Stack — do banco ao pixel final
               </h1>
               <p className="max-w-3xl text-base sm:text-lg text-emerald-50/95">
-                Construa uma aplicação completa, com frontend em React, backend
-                em Node/Express, banco PostgreSQL/Prisma, testes,
-                observabilidade e deploy com Docker e CI/CD.
+                Torne-se um programador fullstack com Python, JavaScript e C#
+                nesse curso completo. Além de aprender as mais modernas
+                ferramentas de IA que estão revolucionando o mercado de
+                programação e tecnologia.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 text-emerald-50/95">
                 <span className="inline-flex items-center gap-2">
                   <Clock className="h-5 w-5" aria-hidden />
-                  {totalHours}h totais (12 semanas)
+                  {totalHours}h totais
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <Users className="h-5 w-5" aria-hidden />
-                  Intermediário · Turmas reduzidas
+                  Intermediário
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <BookOpen className="h-5 w-5" aria-hidden />
@@ -209,12 +156,6 @@ export default function FullStack() {
                   <Zap className="h-5 w-5" />
                   Matricule-se
                 </NavLink>
-                <a
-                  href="#site-main"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-950/20 text-white px-5 py-3 text-sm sm:text-base font-semibold ring-1 ring-white/10 hover:bg-emerald-950/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70 focus-visible:ring-offset-teal-800 transition"
-                >
-                  Ver conteúdos
-                </a>
               </div>
             </div>
 
@@ -271,25 +212,25 @@ export default function FullStack() {
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Público-alvo</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Devs que buscam visão ponta-a-ponta (React + Node/DB + Deploy)
+                  Devs, iniciantes e entusiastas.
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Pré-requisitos</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  JS/TS básico e noções de HTTP/REST
+                  Noções de Informatica e Lógica.
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Metodologia</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Aulas práticas, desafios guiados e capstone
+                  Aulas práticas e estudos de caso.
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Certificado</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Emissão após aprovação (≥ 70%)
+                  Emissão após aprovação (≥ 60%)
                 </dd>
               </div>
             </dl>

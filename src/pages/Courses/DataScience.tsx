@@ -200,14 +200,13 @@ export default function DataScience() {
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Público-alvo</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Analistas, iniciantes em DS e profissionais de negócio
+                  Analistas, Devs e iniciantes.
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Pré-requisitos</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Conhecimentos básicos de informática, raciocínio lógico e
-                  noções iniciais de matemática e estatística.
+                  Noções de Informatica e Lógica
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">

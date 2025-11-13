@@ -128,7 +128,7 @@ export default function FrontEnd() {
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <Users className="h-5 w-5" aria-hidden />
-                  Avançado
+                  Intermediário
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <BookOpen className="h-5 w-5" aria-hidden />
@@ -201,7 +201,7 @@ export default function FrontEnd() {
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Público-alvo</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Iniciantes e devs buscando profissionalização em React
+                  Devs, iniciantes e entusiastas.
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">

@@ -37,7 +37,7 @@ export default function IA() {
   const modules = [
     {
       title: "Módulo 1 — Fundamentos de IA & Prompt Engineering",
-      hours: 12,
+      hours: 30,
       bullets: [
         "Entenda o que é Inteligência Artificial Generativa e como ela funciona.",
         "Domine a arte de criar prompts eficazes para obter respostas precisas e criativas.",
@@ -47,7 +47,7 @@ export default function IA() {
     },
     {
       title: "Módulo 2 — Criação de IA sem código",
-      hours: 12,
+      hours: 30,
       bullets: [
         "Crie suas próprias ferramentas de IA sem precisar programar.",
         "Utilize o Playground da OpenAI para gerar textos, imagens, áudios e chatbots.",
@@ -57,7 +57,7 @@ export default function IA() {
     },
     {
       title: "Módulo 3 — IA com Código",
-      hours: 12,
+      hours: 30,
       bullets: [
         "Aprenda os fundamentos essenciais de Python aplicados à Inteligência Artificial.",
         "Conecte seus projetos à API da OpenAI e automatize tarefas com IA.",
@@ -67,7 +67,7 @@ export default function IA() {
     },
     {
       title: "Módulo 4 — Projetos Práticos Guiados",
-      hours: 12,
+      hours: 30,
       bullets: [
         "Aplique seus conhecimentos em projetos reais e supervisionados.",
         "Desenvolva ferramentas úteis como analisadores financeiros e criadores de contratos.",
@@ -77,7 +77,7 @@ export default function IA() {
     },
     {
       title: "Módulo 5 — Projeto Original",
-      hours: 12,
+      hours: 30,
       bullets: [
         "Crie um projeto autoral com orientação direta do professor.",
         "Transforme sua ideia em um case prático de mercado.",
@@ -106,7 +106,8 @@ export default function IA() {
               <p className="max-w-3xl text-base sm:text-lg text-white/95">
                 Fundamentos de IA e engenharia de prompts, passando por criação
                 de IAs sem código com OpenAI Premium, até desenvolvimento com
-                Python e API da OpenAI. Projetos reais apresentados como case profissional.
+                Python e API da OpenAI. Projetos reais apresentados como case
+                profissional.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 text-white/95">
@@ -187,9 +188,15 @@ export default function IA() {
             <h3 className="text-lg font-semibold">Informações rápidas</h3>
             <dl className="mt-4 space-y-3 text-gray-200">
               <div className="flex items-start justify-between gap-3">
+                <dt className="text-sm">Público-alvo</dt>
+                <dd className="text-sm text-gray-100 text-right">
+                  Devs, iniciantes e entusiastas.
+                </dd>
+              </div>
+              <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Pré-requisitos</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Conhecimentos básicos de informática e noções de lógica.
+                  Noções de Informatica e Lógica.
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
