@@ -7,6 +7,7 @@ export default function ScrollOnRouteState() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const id = (location.state as any)?.scrollToId as string | undefined;
     if (!id) return;
 

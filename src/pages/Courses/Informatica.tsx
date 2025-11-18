@@ -1,4 +1,5 @@
 // InformaticaCourse.tsx
+import React from "react";
 import {
   Cpu,
   CheckCircle2,
@@ -6,11 +7,13 @@ import {
   Users,
   BookOpen,
   Shield,
-  HardDrive,
-  MousePointerClick,
-  FolderOpenDot,
   FileText,
   Zap,
+  Bot,
+  Palette,
+  Projector,
+  TableProperties,
+  Brain,
 } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -25,88 +28,97 @@ export default function Informatica() {
     navigate(href, { state: { scrollToId: "site-main" } });
   };
 
+  // Conteúdo retirado da imagem — informações do curso
+  const tempoCurso = "6 meses";
+  const modalidade = {
+    presencial: "1x na semana (2h)",
+    online: "Flexível",
+  };
+
   const learningOutcomes = [
-    "Dominar o uso do sistema operacional (Windows) e organização de arquivos",
-    "Produtividade no Office/LibreOffice: Documentos, Planilhas e Apresentações",
-    "Navegação segura na web, boas práticas de privacidade e senhas",
-    "E-mail profissional, agendas e boas práticas de comunicação",
-    "Noções de armazenamento em nuvem (Drive/OneDrive) e backup",
-    "Manutenção preventiva básica e resolução de problemas comuns",
+    "Dominar Windows e organização de arquivos",
+    "Produzir documentos profissionais (Word)",
+    "Criar e analisar planilhas (Excel)",
+    "Desenvolver apresentações (PowerPoint)",
+    "Criar sites com HTML, CSS e JavaScript",
+    "Conceitos e prática em Inteligência Artificial com Python",
   ];
 
+  // Módulos ajustados para totalizar 96h e cobrir o conteúdo da imagem
   const modules = [
     {
-      title: "Módulo 1 — Fundamentos do Computador",
-      hours: 6,
+      title: "Módulo 1 — Fundamentos da Informática",
+      hours: 12,
       bullets: [
+        "Tópicos em Sistema Operacional (Windows) e configurações iniciais",
         "Hardware x Software, periféricos e interfaces",
-        "Sistema Operacional (Windows) e configurações iniciais",
-        "Atalhos essenciais, acessibilidade e personalização",
+        "Acessibilidade, atalhos e personalização",
       ],
-      icon: Cpu,
+      icon: Brain,
     },
     {
-      title: "Módulo 2 — Organização de Arquivos",
-      hours: 6,
+      title: "Módulo 2 — Documentos e Textos (Word)",
+      hours: 12,
       bullets: [
-        "Estrutura de pastas, nomes e versões",
-        "Compactação, formatos e boas práticas",
-        "Backup local e em nuvem (Drive/OneDrive)",
-      ],
-      icon: FolderOpenDot,
-    },
-    {
-      title: "Módulo 3 — Documentos e Textos (Editor)",
-      hours: 8,
-      bullets: [
-        "Formatação, estilos, sumário e referências",
-        "Modelos, cabeçalhos/rodapés e PDF",
-        "Revisão, comentários e colaboração",
+        "Formatação, estilos, modelos e exportação para PDF",
+        "Cabeçalhos, sumário, referências e revisão colaborativa",
+        "Boas práticas para documentos profissionais",
       ],
       icon: FileText,
     },
     {
-      title: "Módulo 4 — Planilhas (Básico ao Intermediário)",
-      hours: 10,
+      title: "Módulo 3 — Planilhas (Excel) Básico ao Intermediário",
+      hours: 16,
       bullets: [
-        "Estrutura de tabelas, validação e filtros",
-        "Fórmulas essenciais, gráficos e dashboards simples",
-        "Exportação, impressão e layouts",
+        "Estrutura de tabelas, fórmulas essenciais e funções",
+        "Gráficos, filtros, validação e dashboards simples",
+        "Exportação, impressão e layout de relatórios",
       ],
-      icon: BookOpen,
+      icon: TableProperties,
     },
     {
-      title: "Módulo 5 — Apresentações Eficientes",
-      hours: 6,
+      title: "Módulo 4 — Apresentações (PowerPoint)",
+      hours: 12,
       bullets: [
         "Design limpo, hierarquia visual e tipografia",
-        "Modelos, animações e apresentações remotas",
-        "Storytelling e boas práticas de oratória",
+        "Modelos, transições, animações e apresentações remotas",
+        "Storytelling e técnicas de oratória",
       ],
-      icon: MousePointerClick,
+      icon: Projector,
+    },
+    {
+      title: "Módulo 5 — Criação de Sites (HTML, CSS, JS)",
+      hours: 16,
+      bullets: [
+        "Estrutura HTML e semântica",
+        "Estilos com CSS: layout responsivo e tipografia",
+        "JavaScript básico para interatividade",
+      ],
+      icon: Palette,
     },
     {
       title: "Módulo 6 — Internet Segura e Produtividade",
-      hours: 8,
+      hours: 16,
       bullets: [
-        "Navegadores, extensões e privacidade",
-        "E-mail profissional, calendário e tarefas",
+        "Navegadores, extensões e boas práticas de privacidade",
+        "E-mail profissional, agendas e colaboração",
         "Segurança: senhas, 2FA, phishing e golpes comuns",
       ],
       icon: Shield,
     },
     {
-      title: "Módulo 7 — Manutenção Básica & Troubleshooting",
-      hours: 4,
+      title: "Módulo 7 — Inteligência Artificial com Python",
+      hours: 12,
       bullets: [
-        "Limpeza, atualizações e desempenho",
-        "Drivers, armazenamento e espaço em disco",
-        "Diagnóstico: quando e como pedir ajuda",
+        "Conceitos básicos de IA e fluxos de trabalho",
+        "Criação de agentes simples com Python",
+        "Aplicações práticas e ética em IA",
       ],
-      icon: HardDrive,
+      icon: Bot,
     },
   ];
 
+  // garante que mostre 96 (se necessário use cargaHoraria direto)
   const totalHours = modules.reduce((acc, m) => acc + m.hours, 0);
 
   return (
@@ -118,30 +130,29 @@ export default function Informatica() {
             <div className="relative z-10 flex flex-col gap-4 sm:gap-6">
               <span className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-white/90">
                 <Cpu className="h-4 w-4" aria-hidden />
-                Curso de Fundamentos Práticos
+                Certificação em Informática
               </span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight drop-shadow">
-                Informática — do zero à produtividade real
+                Certificação em Informática — do zero à produtividade real
               </h1>
               <p className="max-w-3xl text-base sm:text-lg text-emerald-50/95">
                 Aprenda a dominar o computador no dia a dia: organização de
-                arquivos, documentos, planilhas, apresentações, internet segura
-                e manutenção básica. Conteúdo direto ao ponto, com exercícios e
-                um projeto integrador.
+                arquivos, documentos, planilhas, apresentações e internet
+                segura. Conteúdo direto ao ponto com exercícios.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 text-emerald-50/95">
                 <span className="inline-flex items-center gap-2">
                   <Clock className="h-5 w-5" aria-hidden />
-                  {totalHours}h totais (12 semanas)
+                  {totalHours}h totais ({tempoCurso})
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <Users className="h-5 w-5" aria-hidden />
-                  Iniciante · Turmas reduzidas
+                  Iniciante
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <BookOpen className="h-5 w-5" aria-hidden />
-                  Material e modelos inclusos
+                  Certificado reconhecido pelo MEC
                 </span>
               </div>
 
@@ -191,8 +202,8 @@ export default function Informatica() {
                 O que você vai aprender
               </h2>
               <p className="mt-2 text-gray-300">
-                Conteúdos aplicados para aumentar sua independência digital e
-                produtividade no trabalho e estudos.
+                Conteúdos práticos e modernos para ampliar suas habilidades
+                digitais e valorizar seu currículo.
               </p>
             </header>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -214,37 +225,46 @@ export default function Informatica() {
             <h3 className="text-lg font-semibold">Informações rápidas</h3>
             <dl className="mt-4 space-y-3 text-gray-200">
               <div className="flex items-start justify-between gap-3">
-                <dt className="text-sm">Público-alvo</dt>
+                <dt className="text-sm">Carga horária</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Iniciantes e usuários que querem ganhar produtividade
+                  {totalHours} horas
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
-                <dt className="text-sm">Pré-requisitos</dt>
+                <dt className="text-sm">Tempo de curso</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Nenhum (apenas disposição para praticar)
+                  {tempoCurso}
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
-                <dt className="text-sm">Metodologia</dt>
+                <dt className="text-sm">Modalidade</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Aulas práticas, desafios guiados e projeto integrador
+                  Presencial: {modalidade.presencial}
+                  <br />
+                  Online: {modalidade.online}
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Certificado</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Emissão após aprovação (≥ 70%)
+                  Reconhecido pelo MEC — emissão após aprovação (≥ 60%)
                 </dd>
               </div>
             </dl>
+
+            <div className="mt-6 border-t border-white/5 pt-4 text-sm text-gray-300">
+              <p className="mt-2">
+                Eleita melhor escola de tecnologia de Juiz de Fora em 2022,
+                2023, 2024 e 2025 (Instituto Idealize)
+              </p>
+            </div>
           </aside>
         </section>
 
         {/* Módulos */}
         <section aria-labelledby="modulos" className="mt-10 sm:mt-14">
           <h2 id="modulos" className="text-xl sm:text-2xl font-semibold mb-4">
-            Módulos do curso
+            Módulos do curso ({totalHours}h)
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
@@ -286,8 +306,8 @@ export default function Informatica() {
         {/* CTA Final */}
         <section className="mt-10 sm:mt-14 flex flex-col items-center gap-4 text-center">
           <p className="text-gray-300 max-w-3xl">
-            Pronto para ganhar independência digital e aumentar sua
-            produtividade? Garanta sua vaga e comece ainda esta turma.
+            Pronto para obter a certificação e aumentar sua competitividade no
+            mercado? Garanta sua vaga!
           </p>
           <NavLink
             to="/matricula"

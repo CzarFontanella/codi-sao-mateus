@@ -11,7 +11,7 @@ import {
   Zap,
 } from "lucide-react";
 import { useMemo, useState } from "react";
-import AccentLine from "../components/AccentLine";
+import AccentLine from "../components/AppComponents/AccentLine";
 
 type Course = {
   id: string;
@@ -79,7 +79,9 @@ type EnrollPageProps = {
 
 export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
   const [selectedCourse, setSelectedCourse] = useState<string>("");
-  const [period, setPeriod] = useState<"weekday" | "saturday" | "online">("weekday");
+  const [period, setPeriod] = useState<"weekday" | "saturday" | "online">(
+    "weekday"
+  );
   const [payment, setPayment] = useState<"pix" | "card" | "boleto">("pix");
   const [accept, setAccept] = useState(false);
 
@@ -93,7 +95,10 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
   const [submitted, setSubmitted] = useState<null | "ok" | "error">(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const selected = useMemo(() => courses.find((c) => c.id === selectedCourse), [courses, selectedCourse]);
+  const selected = useMemo(
+    () => courses.find((c) => c.id === selectedCourse),
+    [courses, selectedCourse]
+  );
 
   const promoDiscount = useMemo(() => (payment === "pix" ? 0.1 : 0), [payment]);
   const subtotal = selected?.price ?? 0;
@@ -105,7 +110,8 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
     if (!selectedCourse) e.course = "Escolha um curso.";
     if (!name.trim()) e.name = "Informe seu nome completo.";
     if (!doc.trim()) e.doc = "Informe seu CPF/Documento.";
-    if (!email.trim() || !/^\S+@\S+\.\S+$/.test(email)) e.email = "Informe um e-mail válido.";
+    if (!email.trim() || !/^\S+@\S+\.\S+$/.test(email))
+      e.email = "Informe um e-mail válido.";
     if (!phone.trim()) e.phone = "Informe um telefone para contato.";
     if (!accept) e.accept = "É necessário aceitar os termos para prosseguir.";
     setErrors(e);
@@ -141,7 +147,8 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
               Escolha sua trilha e comece hoje
             </h1>
             <p className="mt-2 text-white/70 max-w-2xl">
-              Preencha seus dados, selecione o curso e o período ideais. Você receberá as instruções no e-mail.
+              Preencha seus dados, selecione o curso e o período ideais. Você
+              receberá as instruções no e-mail.
             </p>
           </div>
         </div>
@@ -170,7 +177,8 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                       onClick={() => setSelectedCourse(c.id)}
                       className={[
                         "group relative text-left overflow-hidden rounded-xl ring-1 ring-white/10 bg-gradient-to-b from-white/5 to-white/[0.03] hover:ring-white/20 transition-shadow",
-                        active && "ring-2 ring-[#A243D2]/60 shadow-2xl shadow-black/40",
+                        active &&
+                          "ring-2 ring-[#A243D2]/60 shadow-2xl shadow-black/40",
                       ].join(" ")}
                     >
                       {/* Glow */}
@@ -179,10 +187,14 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                         aria-hidden
                       />
                       {/* Barra top */}
-                      <div className={`h-1 w-full bg-gradient-to-r ${c.accent}`} />
+                      <div
+                        className={`h-1 w-full bg-gradient-to-r ${c.accent}`}
+                      />
                       <div className="p-4">
                         <h3 className="font-semibold">{c.title}</h3>
-                        <p className="text-sm text-white/70 mt-0.5">{c.tagline}</p>
+                        <p className="text-sm text-white/70 mt-0.5">
+                          {c.tagline}
+                        </p>
                         <ul className="mt-3 space-y-1.5 text-sm text-white/80">
                           {c.bullets.map((b) => (
                             <li key={b} className="flex items-center gap-2">
@@ -211,7 +223,10 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
             </div>
 
             {/* Formulário escuro */}
-            <form onSubmit={onSubmit} className="rounded-2xl overflow-hidden ring-1 ring-white/10 bg-gradient-to-b from-white/5 to-white/[0.03]">
+            <form
+              onSubmit={onSubmit}
+              className="rounded-2xl overflow-hidden ring-1 ring-white/10 bg-gradient-to-b from-white/5 to-white/[0.03]"
+            >
               <div className="px-6 py-5 border-b border-white/10 flex items-center gap-3">
                 <User className="w-5 h-5" />
                 <h2 className="text-lg font-semibold">Seus dados</h2>
@@ -219,32 +234,54 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
 
               <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium text-white/90">Nome completo</label>
+                  <label className="text-sm font-medium text-white/90">
+                    Nome completo
+                  </label>
                   <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className={`mt-1 w-full rounded-lg border px-3 py-2.5 outline-none transition bg-white/5 text-white placeholder-white/40
-                    ${errors.name ? "border-red-400/60 focus:ring-2 focus:ring-red-400/30" : "border-white/10 focus:ring-2 focus:ring-[#A243D2]/30"}`}
+                    ${
+                      errors.name
+                        ? "border-red-400/60 focus:ring-2 focus:ring-red-400/30"
+                        : "border-white/10 focus:ring-2 focus:ring-[#A243D2]/30"
+                    }`}
                     placeholder="Ex.: Maria Silva"
                   />
-                  {errors.name && <p className="mt-1 text-sm text-red-400">{errors.name}</p>}
+                  {errors.name && (
+                    <p className="mt-1 text-sm text-red-400">{errors.name}</p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-white/90">CPF / Documento</label>
+                  <label className="text-sm font-medium text-white/90">
+                    CPF / Documento
+                  </label>
                   <input
                     value={doc}
                     onChange={(e) => setDoc(e.target.value)}
                     className={`mt-1 w-full rounded-lg border px-3 py-2.5 outline-none transition bg-white/5 text-white placeholder-white/40
-                    ${errors.doc ? "border-red-400/60 focus:ring-2 focus:ring-red-400/30" : "border-white/10 focus:ring-2 focus:ring-[#A243D2]/30"}`}
+                    ${
+                      errors.doc
+                        ? "border-red-400/60 focus:ring-2 focus:ring-red-400/30"
+                        : "border-white/10 focus:ring-2 focus:ring-[#A243D2]/30"
+                    }`}
                     placeholder="000.000.000-00"
                   />
-                  {errors.doc && <p className="mt-1 text-sm text-red-400">{errors.doc}</p>}
+                  {errors.doc && (
+                    <p className="mt-1 text-sm text-red-400">{errors.doc}</p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-white/90">E-mail</label>
-                  <div className={`mt-1 flex items-center gap-2 rounded-lg border px-3 py-2.5 bg-white/5 ${errors.email ? "border-red-400/60" : "border-white/10"}`}>
+                  <label className="text-sm font-medium text-white/90">
+                    E-mail
+                  </label>
+                  <div
+                    className={`mt-1 flex items-center gap-2 rounded-lg border px-3 py-2.5 bg-white/5 ${
+                      errors.email ? "border-red-400/60" : "border-white/10"
+                    }`}
+                  >
                     <Mail className="w-4 h-4 text-white/60" />
                     <input
                       value={email}
@@ -253,12 +290,20 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                       placeholder="voce@email.com"
                     />
                   </div>
-                  {errors.email && <p className="mt-1 text-sm text-red-400">{errors.email}</p>}
+                  {errors.email && (
+                    <p className="mt-1 text-sm text-red-400">{errors.email}</p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-white/90">Telefone</label>
-                  <div className={`mt-1 flex items-center gap-2 rounded-lg border px-3 py-2.5 bg-white/5 ${errors.phone ? "border-red-400/60" : "border-white/10"}`}>
+                  <label className="text-sm font-medium text-white/90">
+                    Telefone
+                  </label>
+                  <div
+                    className={`mt-1 flex items-center gap-2 rounded-lg border px-3 py-2.5 bg-white/5 ${
+                      errors.phone ? "border-red-400/60" : "border-white/10"
+                    }`}
+                  >
                     <Phone className="w-4 h-4 text-white/60" />
                     <input
                       value={phone}
@@ -267,11 +312,15 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                       placeholder="(00) 00000-0000"
                     />
                   </div>
-                  {errors.phone && <p className="mt-1 text-sm text-red-400">{errors.phone}</p>}
+                  {errors.phone && (
+                    <p className="mt-1 text-sm text-red-400">{errors.phone}</p>
+                  )}
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="text-sm font-medium text-white/90">Cidade/UF (opcional)</label>
+                  <label className="text-sm font-medium text-white/90">
+                    Cidade/UF (opcional)
+                  </label>
                   <div className="mt-1 flex items-center gap-2 rounded-lg border border-white/10 px-3 py-2.5 bg-white/5">
                     <MapPin className="w-4 h-4 text-white/60" />
                     <input
@@ -296,7 +345,11 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                       type="button"
                       onClick={() => setPeriod("weekday")}
                       className={`rounded-lg px-3 py-2 text-sm ring-1
-                      ${period === "weekday" ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30" : "ring-white/10 hover:bg-white/5"}`}
+                      ${
+                        period === "weekday"
+                          ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
+                          : "ring-white/10 hover:bg-white/5"
+                      }`}
                     >
                       Seg–Sex
                     </button>
@@ -304,7 +357,11 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                       type="button"
                       onClick={() => setPeriod("saturday")}
                       className={`rounded-lg px-3 py-2 text-sm ring-1
-                      ${period === "saturday" ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30" : "ring-white/10 hover:bg-white/5"}`}
+                      ${
+                        period === "saturday"
+                          ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
+                          : "ring-white/10 hover:bg-white/5"
+                      }`}
                     >
                       Sábados
                     </button>
@@ -312,7 +369,11 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                       type="button"
                       onClick={() => setPeriod("online")}
                       className={`rounded-lg px-3 py-2 text-sm ring-1
-                      ${period === "online" ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30" : "ring-white/10 hover:bg-white/5"}`}
+                      ${
+                        period === "online"
+                          ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
+                          : "ring-white/10 hover:bg-white/5"
+                      }`}
                     >
                       Online
                     </button>
@@ -329,7 +390,11 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                       type="button"
                       onClick={() => setPayment("pix")}
                       className={`rounded-lg px-3 py-2 text-sm ring-1
-                      ${payment === "pix" ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30" : "ring-white/10 hover:bg-white/5"}`}
+                      ${
+                        payment === "pix"
+                          ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
+                          : "ring-white/10 hover:bg-white/5"
+                      }`}
                     >
                       PIX
                     </button>
@@ -337,7 +402,11 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                       type="button"
                       onClick={() => setPayment("card")}
                       className={`rounded-lg px-3 py-2 text-sm ring-1
-                      ${payment === "card" ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30" : "ring-white/10 hover:bg-white/5"}`}
+                      ${
+                        payment === "card"
+                          ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
+                          : "ring-white/10 hover:bg-white/5"
+                      }`}
                     >
                       Cartão
                     </button>
@@ -345,7 +414,11 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                       type="button"
                       onClick={() => setPayment("boleto")}
                       className={`rounded-lg px-3 py-2 text-sm ring-1
-                      ${payment === "boleto" ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30" : "ring-white/10 hover:bg-white/5"}`}
+                      ${
+                        payment === "boleto"
+                          ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
+                          : "ring-white/10 hover:bg-white/5"
+                      }`}
                     >
                       Boleto
                     </button>
@@ -358,7 +431,9 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                 </div>
 
                 <div className="md:col-span-1">
-                  <label className="text-sm font-medium text-white/90">Termos</label>
+                  <label className="text-sm font-medium text-white/90">
+                    Termos
+                  </label>
                   <div className="mt-2 flex items-start gap-2">
                     <input
                       id="terms"
@@ -368,10 +443,13 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                       className="mt-1 h-4 w-4 rounded border-white/20 text-[#A243D2] bg-transparent focus:ring-[#A243D2]"
                     />
                     <label htmlFor="terms" className="text-sm text-white/80">
-                      Li e concordo com os termos de matrícula e política de privacidade.
+                      Li e concordo com os termos de matrícula e política de
+                      privacidade.
                     </label>
                   </div>
-                  {errors.accept && <p className="mt-1 text-sm text-red-400">{errors.accept}</p>}
+                  {errors.accept && (
+                    <p className="mt-1 text-sm text-red-400">{errors.accept}</p>
+                  )}
                 </div>
               </div>
 
@@ -403,7 +481,8 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
               {submitted === "ok" && (
                 <div className="px-6 pb-6 -mt-2">
                   <div className="rounded-xl bg-emerald-500/10 text-emerald-200 px-4 py-3 ring-1 ring-emerald-400/30">
-                    Matrícula enviada com sucesso! Em breve você receberá um e-mail com as próximas etapas.
+                    Matrícula enviada com sucesso! Em breve você receberá um
+                    e-mail com as próximas etapas.
                   </div>
                 </div>
               )}
@@ -435,24 +514,38 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                   <div className="flex items-center justify-between">
                     <span className="text-white/70">Período</span>
                     <span className="font-medium text-white">
-                      {period === "weekday" ? "Seg–Sex" : period === "saturday" ? "Sábados" : "Online"}
+                      {period === "weekday"
+                        ? "Seg–Sex"
+                        : period === "saturday"
+                        ? "Sábados"
+                        : "Online"}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-white/70">Pagamento</span>
-                    <span className="font-medium text-white uppercase">{payment}</span>
+                    <span className="font-medium text-white uppercase">
+                      {payment}
+                    </span>
                   </div>
 
                   <hr className="border-white/10" />
 
                   <div className="flex items-center justify-between">
                     <span className="text-white/60">Subtotal</span>
-                    <span className="text-white">R$ {subtotal.toLocaleString("pt-BR")}</span>
+                    <span className="text-white">
+                      R$ {subtotal.toLocaleString("pt-BR")}
+                    </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-white/60">Desconto</span>
-                    <span className={discount > 0 ? "text-emerald-300" : "text-white"}>
-                      {discount > 0 ? `- R$ ${discount.toLocaleString("pt-BR")}` : "—"}
+                    <span
+                      className={
+                        discount > 0 ? "text-emerald-300" : "text-white"
+                      }
+                    >
+                      {discount > 0
+                        ? `- R$ ${discount.toLocaleString("pt-BR")}`
+                        : "—"}
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-base font-semibold">
@@ -469,7 +562,9 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                 <ul className="p-5 text-sm text-white/80 space-y-2">
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-emerald-400 mt-0.5" />
-                    <span>Escolha PIX para garantir 10% de desconto imediato.</span>
+                    <span>
+                      Escolha PIX para garantir 10% de desconto imediato.
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-emerald-400 mt-0.5" />

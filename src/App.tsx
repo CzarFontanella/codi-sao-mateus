@@ -3,7 +3,7 @@ import UserBar from "./components/AppComponents/UserBar.tsx";
 import Router from "./Router.tsx";
 import Footer from "./components/AppComponents/Footer.tsx";
 import ScrollToHash from "./components/AppComponents/ScrollOnRouteState.tsx";
-import AccentLine from "./components/AccentLine.tsx";
+import AccentLine from "./components/AppComponents/AccentLine.tsx";
 
 export default function App() {
   return (

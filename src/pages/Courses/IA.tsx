@@ -25,6 +25,12 @@ export default function IA() {
     navigate(href, { state: { scrollToId: "site-main" } });
   };
 
+  const tempoCurso = "4 meses";
+  const modalidade = {
+    presencial: "1x na semana (1.5h)",
+    online: "Flexível",
+  };
+
   const learningOutcomes = [
     "O aluno compreenderá os fundamentos da IA e Prompt Engineering.",
     "Será capaz de criar soluções inteligentes com e sem código.",
@@ -188,30 +194,41 @@ export default function IA() {
             <h3 className="text-lg font-semibold">Informações rápidas</h3>
             <dl className="mt-4 space-y-3 text-gray-200">
               <div className="flex items-start justify-between gap-3">
-                <dt className="text-sm">Público-alvo</dt>
+                <dt className="text-sm">Carga horária</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Devs, iniciantes e entusiastas.
+                  {totalHours} horas
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
-                <dt className="text-sm">Pré-requisitos</dt>
+                <dt className="text-sm">Tempo de curso</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Noções de Informatica e Lógica.
+                  {tempoCurso}
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
-                <dt className="text-sm">Metodologia</dt>
+                <dt className="text-sm">Modalidade</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Aulas práticas e estudos de caso.
+                  Presencial: {modalidade.presencial}
+                  <br />
+                  Online: {modalidade.online}
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Certificado</dt>
                 <dd className="text-sm text-gray-100 text-right">
+                  Reconhecido pelo MEC
+                  <br />
                   Emissão após aprovação (≥ 60%)
                 </dd>
               </div>
             </dl>
+
+            <div className="mt-6 border-t border-white/5 pt-4 text-sm text-gray-300">
+              <p className="mt-2">
+                Eleita melhor escola de tecnologia de Juiz de Fora em 2022,
+                2023, 2024 e 2025 (Instituto Idealize)
+              </p>
+            </div>
           </aside>
         </section>
 

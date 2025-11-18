@@ -25,6 +25,13 @@ export default function FrontEnd() {
     navigate(href, { state: { scrollToId: "site-main" } });
   };
 
+  const tempoCurso = "6 meses";
+  const modalidade = {
+    intensivo: "1x na semana (3h)",
+    extensivo: "2x na semana (2h)",
+    online: "Flexível",
+  };
+
   const learningOutcomes = [
     "Desenvolver páginas web modernas e responsivas.",
     "Interatividade em sites manipulando DOM, eventos e dados.",
@@ -108,7 +115,7 @@ export default function FrontEnd() {
             <div className="relative z-10 flex flex-col gap-4 sm:gap-6">
               <span className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-white/90">
                 <Palette className="h-4 w-4" aria-hidden />
-                Trilha Profissional Front End
+                Trilha Profissional — Front End
               </span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight drop-shadow">
                 Front End — React, Tailwind e Deploy moderno
@@ -199,30 +206,41 @@ export default function FrontEnd() {
             <h3 className="text-lg font-semibold">Informações rápidas</h3>
             <dl className="mt-4 space-y-3 text-gray-200">
               <div className="flex items-start justify-between gap-3">
-                <dt className="text-sm">Público-alvo</dt>
+                <dt className="text-sm">Carga horária</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Devs, iniciantes e entusiastas.
+                  {totalHours} horas
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
-                <dt className="text-sm">Pré-requisitos</dt>
+                <dt className="text-sm">Tempo de curso</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Noções de Informatica e Lógica
+                  {tempoCurso}
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
-                <dt className="text-sm">Metodologia</dt>
+                <dt className="text-sm">Modalidade</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Aulas práticas e estudos de caso.
+                  Intensivo: {modalidade.intensivo}
+                  <br />
+                  Extensivo: {modalidade.extensivo}
+                  <br />
+                  Online: {modalidade.online}
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-3">
                 <dt className="text-sm">Certificado</dt>
                 <dd className="text-sm text-gray-100 text-right">
-                  Emissão após aprovação (≥ 60%)
+                  Reconhecido pelo MEC — emissão após aprovação (≥ 60%)
                 </dd>
               </div>
             </dl>
+
+            <div className="mt-6 border-t border-white/5 pt-4 text-sm text-gray-300">
+              <p className="mt-2">
+                Eleita melhor escola de tecnologia de Juiz de Fora em 2022,
+                2023, 2024 e 2025 (Instituto Idealize)
+              </p>
+            </div>
           </aside>
         </section>
 
