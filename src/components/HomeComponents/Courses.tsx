@@ -6,6 +6,7 @@ import {
   Zap,
   Cpu,
   Bot,
+  Globe,
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
@@ -67,6 +68,19 @@ export default function Courses() {
       cta: "Quero começar do zero",
       href: "/cursos/informatica",
       accent: "from-lime-400 to-emerald-700",
+    },
+    {
+      title: "Inglês para Programadores",
+      icon: Globe,
+      tagline: "Aprenda o essencial para a área de tecnologia.",
+      bullets: [
+        "Vocabulário técnico",
+        "Leitura e interpretação",
+        "Conversação no ambiente de TI",
+      ],
+      cta: "Quero começar do zero",
+      href: "/cursos/ingles",
+      accent: "from-red-500 to-red-900",
     },
   ];
 

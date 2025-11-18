@@ -7,6 +7,7 @@ import BackEnd from "./pages/Courses/BackEnd";
 import DataScience from "./pages/Courses/DataScience";
 import FullStack from "./pages/Courses/FullStack";
 import IA from "./pages/Courses/IA";
+import Ingles from "./pages/Courses/Ingles";
 
 // auth: boolean (true = logado)
 export default function Router() {
@@ -23,6 +24,7 @@ export default function Router() {
       <Route path="/cursos/datascience" element={<DataScience />} />
       <Route path="/cursos/ia" element={<IA />} />
       <Route path="/cursos/informatica" element={<Informatica />} />
+      <Route path="/cursos/ingles" element={<Ingles />} />
 
       {/* Fallback */}
       <Route path="*" element={<Navigate to="/" replace />} />

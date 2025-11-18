@@ -13,6 +13,7 @@ import {
   Palette,
   Cpu,
   Bot,
+  Globe,
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
@@ -197,7 +198,7 @@ export default function Footer() {
                   <h3 id="cursos-titulo" className="mt-1 text-lg font-semibold">
                     Cursos
                   </h3>
-                  <div className="mt-2 flex items-center gap-3">
+                  <div className="mt-2 flex items-center gap-2">
                     <NavLink
                       to="/cursos/frontend"
                       onClick={(e) => goto(e, "/cursos/frontend", "site-main")}
@@ -243,6 +244,15 @@ export default function Footer() {
                       className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2 hover:bg-white/10"
                     >
                       <Cpu />
+                    </NavLink>
+                    <NavLink
+                      to="/cursos/ingles"
+                      onClick={(e) =>
+                        goto(e, "/cursos/ingles", "site-main")
+                      }
+                      className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2 hover:bg-white/10"
+                    >
+                      <Globe />
                     </NavLink>
                   </div>
                 </nav>
