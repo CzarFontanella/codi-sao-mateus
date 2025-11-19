@@ -106,7 +106,7 @@ export default function BackEnd() {
   const totalHours = modules.reduce((acc, m) => acc + m.hours, 0); // 70h
 
   return (
-    <section className="w-full text-white">
+    <section className="w-full text-white overflow-x-hidden">
       {/* HERO */}
       <header className="relative isolate">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14">
@@ -163,10 +163,7 @@ export default function BackEnd() {
       </header>
 
       {/* MAIN (alvo do scroll externo) */}
-      <main
-        id="site-main"
-        className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14"
-      >
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
         {/* O que você vai aprender */}
         <section
           aria-labelledby="aprendizado"
@@ -299,7 +296,7 @@ export default function BackEnd() {
             Matricule-se agora
           </NavLink>
         </section>
-      </main>
+      </div>
     </section>
   );
 }
