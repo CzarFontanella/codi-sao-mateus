@@ -341,9 +341,16 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                         </ul>
                         <div className="mt-4 flex items-baseline justify-between">
                           <span className="text-xs text-white/60">Preço</span>
-                          <span className="text-base font-semibold">
-                            R$ {c.price.toLocaleString("pt-BR")}
-                          </span>
+                          <div className="flex items-baseline">
+                            {/* preço riscado em cinza (preço "anterior" = preço atual + 200) */}
+                            <span className="text-sm text-white/40 line-through mr-2">
+                              R$ {(c.price + 200).toLocaleString("pt-BR")}
+                            </span>
+                            {/* preço atual oficial */}
+                            <span className="text-base font-semibold">
+                              R$ {c.price.toLocaleString("pt-BR")}
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </button>
