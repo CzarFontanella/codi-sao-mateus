@@ -10,7 +10,7 @@ import {
   User,
   Zap,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import AccentLine from "../components/AppComponents/AccentLine";
 
 type Course = {
@@ -20,6 +20,10 @@ type Course = {
   bullets: string[];
   price: number;
   accent: string; // ex: "from-fuchsia-500 to-violet-800"
+  turmas?: {
+    periodo: string;
+    turno?: string[];
+  }[];
 };
 
 const DEFAULT_COURSES: Course[] = [
@@ -28,48 +32,139 @@ const DEFAULT_COURSES: Course[] = [
     title: "Front End",
     tagline: "Interfaces modernas e acessíveis.",
     bullets: ["React + Vite", "Tailwind CSS", "Acessibilidade (a11y)"],
-    price: 1299,
+    price: 1599,
     accent: "from-fuchsia-500 to-violet-800",
+    turmas: [
+      {
+        periodo: "Seg–Qua (2h/dia)",
+        turno: ["Noturno"],
+      },
+      {
+        periodo: "Ter–Qui (2h/dia)",
+        turno: ["Matutino", "Diurno", "Noturno"],
+      },
+      {
+        periodo: "Online",
+      },
+    ],
   },
   {
     id: "back-end",
     title: "Back End",
     tagline: "APIs escaláveis e seguras.",
     bullets: ["Node/Express", "Auth/JWT", "PostgreSQL/Prisma"],
-    price: 1399,
+    price: 1599,
     accent: "from-sky-500 to-cyan-800",
+    turmas: [
+      {
+        periodo: "Seg–Qua (2h/dia)",
+        turno: ["Noturno"],
+      },
+      {
+        periodo: "Ter–Qui (2h/dia)",
+        turno: ["Matutino", "Diurno", "Noturno"],
+      },
+      {
+        periodo: "Online",
+      },
+    ],
   },
   {
     id: "fullstack",
     title: "Full-Stack",
     tagline: "Do banco ao pixel final.",
     bullets: ["React + Node", "REST/Arquitetura", "DevOps básico"],
-    price: 1899,
+    price: 2799,
     accent: "from-emerald-500 to-teal-800",
+    turmas: [
+      {
+        periodo: "Seg–Qua (2h/dia)",
+        turno: ["Noturno"],
+      },
+      {
+        periodo: "Ter–Qui (2h/dia)",
+        turno: ["Matutino", "Diurno", "Noturno"],
+      },
+      {
+        periodo: "Intensivo Qua (3h/dia)",
+        turno: ["Noturno"],
+      },
+      {
+        periodo: "Online",
+      },
+    ],
   },
   {
     id: "data-science",
     title: "Data Science",
     tagline: "Dados em ação, decisões melhores.",
     bullets: ["Python/Pandas", "ML básico", "Dashboards"],
-    price: 1699,
+    price: 2399,
     accent: "from-amber-500 to-orange-600",
+    turmas: [
+      {
+        periodo: "Intensivo Ter (3h/dia)",
+        turno: ["Noturno"],
+      },
+      {
+        periodo: "Online",
+      },
+    ],
   },
   {
     id: "ia",
     title: "Inteligência Artificial",
     tagline: "Do prompt ao modelo em produção.",
     bullets: ["LLMs & APIs", "Prompt Engineering", "Ética & avaliação"],
-    price: 1799,
+    price: 1499,
     accent: "from-purple-400 to-fuchsia-800",
+    turmas: [
+      {
+        periodo: "Quarta (1h30m/dia)",
+        turno: ["Manhã", "Tarde"],
+      },
+      {
+        periodo: "Quinta (1h30m/dia)",
+        turno: ["Noite"],
+      },
+      {
+        periodo: "Online",
+      },
+    ],
   },
   {
     id: "informatica",
     title: "Informática",
     tagline: "Fundamentos práticos do computador.",
     bullets: ["S.O. & Office", "Navegação segura", "Organização de arquivos"],
-    price: 899,
+    price: 1499,
     accent: "from-indigo-500 to-blue-800",
+    turmas: [
+      {
+        periodo: "Seg–Qua (2h/dia)",
+        turno: ["Tarde"],
+      },
+      {
+        periodo: "Online",
+      },
+    ],
+  },
+  {
+    id: "ingles",
+    title: "Inglês para Desenvolvedores",
+    tagline: "Inglês técnico focado em TI.",
+    bullets: [
+      "Vocabulário técnico",
+      "Leitura e interpretação",
+      "Conversação no amb. de TI",
+    ],
+    price: 799,
+    accent: "from-red-500 to-red-900",
+    turmas: [
+      {
+        periodo: "Online",
+      },
+    ],
   },
 ];
 
@@ -91,6 +186,10 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
 
+  // new states for turma / turno selections
+  const [selectedTurmaIdx, setSelectedTurmaIdx] = useState<number | null>(null);
+  const [selectedTurno, setSelectedTurno] = useState<string | null>(null);
+
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState<null | "ok" | "error">(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -99,6 +198,12 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
     () => courses.find((c) => c.id === selectedCourse),
     [courses, selectedCourse]
   );
+
+  // when course changes, reset turma/turno
+  useEffect(() => {
+    setSelectedTurmaIdx(null);
+    setSelectedTurno(null);
+  }, [selectedCourse]);
 
   const promoDiscount = useMemo(() => (payment === "pix" ? 0.1 : 0), [payment]);
   const subtotal = selected?.price ?? 0;
@@ -114,6 +219,30 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
       e.email = "Informe um e-mail válido.";
     if (!phone.trim()) e.phone = "Informe um telefone para contato.";
     if (!accept) e.accept = "É necessário aceitar os termos para prosseguir.";
+
+    // if course selected and it has turmas, ensure a turma is chosen
+    if (
+      selected &&
+      selected.turmas &&
+      selected.turmas.length > 0 &&
+      selectedTurmaIdx === null
+    ) {
+      e.turma = "Escolha um período (turma).";
+    }
+
+    // if chosen turma has turnos, ensure turno chosen
+    if (
+      selected &&
+      selected.turmas &&
+      selectedTurmaIdx !== null &&
+      selected.turmas[selectedTurmaIdx] &&
+      selected.turmas[selectedTurmaIdx].turno &&
+      selected.turmas[selectedTurmaIdx].turno!.length > 0 &&
+      !selectedTurno
+    ) {
+      e.turno = "Escolha um turno.";
+    }
+
     setErrors(e);
     return Object.keys(e).length === 0;
   }
@@ -132,6 +261,13 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
       setLoading(false);
     }
   }
+
+  // helpers to display selected period/turno in the summary
+  const resumoPeriodo = selected
+    ? selectedTurmaIdx !== null
+      ? selected.turmas?.[selectedTurmaIdx]?.periodo ?? "—"
+      : "—"
+    : period === "weekday"
 
   return (
     <main id="site-main" className="bg-gray-950 text-white">
@@ -340,44 +476,111 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                     <Calendar className="w-4 h-4" />
                     Período
                   </label>
-                  <div className="mt-2 grid grid-cols-3 gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setPeriod("weekday")}
-                      className={`rounded-lg px-3 py-2 text-sm ring-1
-                      ${
-                        period === "weekday"
-                          ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
-                          : "ring-white/10 hover:bg-white/5"
-                      }`}
-                    >
-                      Seg–Sex
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setPeriod("saturday")}
-                      className={`rounded-lg px-3 py-2 text-sm ring-1
-                      ${
-                        period === "saturday"
-                          ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
-                          : "ring-white/10 hover:bg-white/5"
-                      }`}
-                    >
-                      Sábados
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setPeriod("online")}
-                      className={`rounded-lg px-3 py-2 text-sm ring-1
-                      ${
-                        period === "online"
-                          ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
-                          : "ring-white/10 hover:bg-white/5"
-                      }`}
-                    >
-                      Online
-                    </button>
-                  </div>
+
+                  {/* If a course with turmas is selected, show turma buttons dynamically */}
+                  {selected && selected.turmas ? (
+                    <div className="mt-2 space-y-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {selected.turmas.map((t, idx) => {
+                          const active = selectedTurmaIdx === idx;
+                          return (
+                            <button
+                              key={t.periodo}
+                              type="button"
+                              onClick={() => {
+                                setSelectedTurmaIdx(idx);
+                                // reset turno when changing turma
+                                setSelectedTurno(null);
+                              }}
+                              className={`rounded-lg px-3 py-2 text-sm ring-1 ${
+                                active
+                                  ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
+                                  : "ring-white/10 hover:bg-white/5"
+                              }`}
+                            >
+                              {t.periodo}
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      {/* Show turnos for the selected turma (if any) */}
+                      {selectedTurmaIdx !== null &&
+                        selected.turmas[selectedTurmaIdx].turno && (
+                          <div className="mt-2">
+                            <label className="text-xs text-white/70">
+                              Turno
+                            </label>
+                            <div className="mt-1 grid grid-cols-3 gap-2">
+                              {selected.turmas[selectedTurmaIdx].turno!.map(
+                                (tr) => (
+                                  <button
+                                    key={tr}
+                                    type="button"
+                                    onClick={() => setSelectedTurno(tr)}
+                                    className={`rounded-lg px-3 py-2 text-sm ring-1 ${
+                                      selectedTurno === tr
+                                        ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
+                                        : "ring-white/10 hover:bg-white/5"
+                                    }`}
+                                  >
+                                    {tr}
+                                  </button>
+                                )
+                              )}
+                            </div>
+                            {errors.turno && (
+                              <p className="mt-1 text-sm text-red-400">
+                                {errors.turno}
+                              </p>
+                            )}
+                          </div>
+                        )}
+
+                      {errors.turma && (
+                        <p className="mt-1 text-sm text-red-400">
+                          {errors.turma}
+                        </p>
+                      )}
+                    </div>
+                  ) : (
+                    // fallback to original static period buttons when no course selected
+                    <div className="mt-2 grid grid-cols-3 gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setPeriod("weekday")}
+                        className={`rounded-lg px-3 py-2 text-sm ring-1 ${
+                          period === "weekday"
+                            ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
+                            : "ring-white/10 hover:bg-white/5"
+                        }`}
+                      >
+                        Seg–Sex
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setPeriod("saturday")}
+                        className={`rounded-lg px-3 py-2 text-sm ring-1 ${
+                          period === "saturday"
+                            ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
+                            : "ring-white/10 hover:bg-white/5"
+                        }`}
+                      >
+                        Sábados
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setPeriod("online")}
+                        className={`rounded-lg px-3 py-2 text-sm ring-1 ${
+                          period === "online"
+                            ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
+                            : "ring-white/10 hover:bg-white/5"
+                        }`}
+                      >
+                        Online
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -389,8 +592,7 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                     <button
                       type="button"
                       onClick={() => setPayment("pix")}
-                      className={`rounded-lg px-3 py-2 text-sm ring-1
-                      ${
+                      className={`rounded-lg px-3 py-2 text-sm ring-1 ${
                         payment === "pix"
                           ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
                           : "ring-white/10 hover:bg-white/5"
@@ -401,8 +603,7 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                     <button
                       type="button"
                       onClick={() => setPayment("card")}
-                      className={`rounded-lg px-3 py-2 text-sm ring-1
-                      ${
+                      className={`rounded-lg px-3 py-2 text-sm ring-1 ${
                         payment === "card"
                           ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
                           : "ring-white/10 hover:bg-white/5"
@@ -413,8 +614,7 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                     <button
                       type="button"
                       onClick={() => setPayment("boleto")}
-                      className={`rounded-lg px-3 py-2 text-sm ring-1
-                      ${
+                      className={`rounded-lg px-3 py-2 text-sm ring-1 ${
                         payment === "boleto"
                           ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
                           : "ring-white/10 hover:bg-white/5"
@@ -514,13 +714,19 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                   <div className="flex items-center justify-between">
                     <span className="text-white/70">Período</span>
                     <span className="font-medium text-white">
-                      {period === "weekday"
-                        ? "Seg–Sex"
-                        : period === "saturday"
-                        ? "Sábados"
-                        : "Online"}
+                      {resumoPeriodo}
                     </span>
                   </div>
+
+                  {selected && selected.turmas && selectedTurmaIdx !== null && (
+                    <div className="flex items-center justify-between">
+                      <span className="text-white/70">Turno</span>
+                      <span className="font-medium text-white">
+                        {selectedTurno ?? "—"}
+                      </span>
+                    </div>
+                  )}
+
                   <div className="flex items-center justify-between">
                     <span className="text-white/70">Pagamento</span>
                     <span className="font-medium text-white uppercase">
