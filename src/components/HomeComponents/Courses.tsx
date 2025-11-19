@@ -78,7 +78,7 @@ export default function Courses() {
         "Leitura e interpretação",
         "Conversação no ambiente de TI",
       ],
-      cta: "Quero começar do zero",
+      cta: "Quero ser bilingue",
       href: "/cursos/ingles",
       accent: "from-red-500 to-red-900",
     },
