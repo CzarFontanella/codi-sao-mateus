@@ -15,7 +15,7 @@ export default function HeroPresentation({
 }: HeroProps) {
 
   return (
-    <section className="relative isolate overflow-hidden bg-gray-950 text-white">
+    <section className="relative isolate overflow-hidden text-white">
       {/* Glow decorativo de fundo */}
       <div
         className="pointer-events-none absolute -z-10 left-1/2 top-[-140px] h-[520px] w-[1200px] -translate-x-1/2 rounded-full blur-3xl opacity-30"

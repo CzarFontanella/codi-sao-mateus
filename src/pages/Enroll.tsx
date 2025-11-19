@@ -270,9 +270,9 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
     : period === "weekday"
 
   return (
-    <main id="site-main" className="bg-gray-950 text-white">
+    <>
       {/* Hero escuro */}
-      <section className="bg-gray-950">
+      <section>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
           <div className="flex flex-col items-center text-center">
             <span className="inline-flex items-center gap-2 rounded-xl ring-1 ring-white/10 px-3 py-1.5 bg-white/5">
@@ -782,6 +782,6 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
           </aside>
         </div>
       </section>
-    </main>
+    </>
   );
 }

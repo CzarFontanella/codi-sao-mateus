@@ -109,7 +109,7 @@ export default function About() {
   ];
 
   return (
-    <main id="site-main" className="bg-gray-950 text-white">
+    <>
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div
@@ -310,6 +310,6 @@ export default function About() {
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 }

@@ -27,7 +27,7 @@ export default function IA() {
 
   const tempoCurso = "4 meses";
   const modalidade = {
-    presencial: "1x na semana (1.5h)",
+    presencial: "1x na semana (1h30m)",
     online: "Flexível",
   };
 
@@ -96,7 +96,7 @@ export default function IA() {
   const totalHours = modules.reduce((acc, m) => acc + m.hours, 0); // 60h
 
   return (
-    <section className="w-full bg-gray-950 text-white">
+    <section className="w-full text-white">
       {/* HERO */}
       <header className="relative isolate">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14">
