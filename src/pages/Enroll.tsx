@@ -10,7 +10,7 @@ import {
   User,
   Zap,
 } from "lucide-react";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import AccentLine from "../components/AppComponents/AccentLine";
 
 type Course = {
@@ -36,12 +36,12 @@ const DEFAULT_COURSES: Course[] = [
     accent: "from-fuchsia-500 to-violet-800",
     turmas: [
       {
-        periodo: "Seg–Qua (2h/dia)",
-        turno: ["Noturno"],
+        periodo: "Seg–Qua",
+        turno: ["Noite\n19h~21h"],
       },
       {
-        periodo: "Ter–Qui (2h/dia)",
-        turno: ["Matutino", "Diurno", "Noturno"],
+        periodo: "Ter–Qui",
+        turno: ["Manhã\n10h~12h", "Tarde\n15h~17h", "Noite\n19h~21h"],
       },
       {
         periodo: "Online",
@@ -57,12 +57,12 @@ const DEFAULT_COURSES: Course[] = [
     accent: "from-sky-500 to-cyan-800",
     turmas: [
       {
-        periodo: "Seg–Qua (2h/dia)",
-        turno: ["Noturno"],
+        periodo: "Seg–Qua",
+        turno: ["Noite\n19h~21h"],
       },
       {
-        periodo: "Ter–Qui (2h/dia)",
-        turno: ["Matutino", "Diurno", "Noturno"],
+        periodo: "Ter–Qui",
+        turno: ["Manhã\n10h~12h", "Tarde\n15h~17h", "Noite\n19h~21h"],
       },
       {
         periodo: "Online",
@@ -78,16 +78,16 @@ const DEFAULT_COURSES: Course[] = [
     accent: "from-emerald-500 to-teal-800",
     turmas: [
       {
-        periodo: "Seg–Qua (2h/dia)",
-        turno: ["Noturno"],
+        periodo: "Seg–Qua",
+        turno: ["Noite\n19h~21h"],
       },
       {
-        periodo: "Ter–Qui (2h/dia)",
-        turno: ["Matutino", "Diurno", "Noturno"],
+        periodo: "Ter–Qui",
+        turno: ["Manhã\n10h~12h", "Tarde\n15h~17h", "Noite\n19h~21h"],
       },
       {
-        periodo: "Intensivo Qua (3h/dia)",
-        turno: ["Noturno"],
+        periodo: "Intensivo Qua",
+        turno: ["Noite\n19h~22h"],
       },
       {
         periodo: "Online",
@@ -103,8 +103,8 @@ const DEFAULT_COURSES: Course[] = [
     accent: "from-amber-500 to-orange-600",
     turmas: [
       {
-        periodo: "Intensivo Ter (3h/dia)",
-        turno: ["Noturno"],
+        periodo: "Intensivo Ter",
+        turno: ["Noite\n19h~22h"],
       },
       {
         periodo: "Online",
@@ -120,12 +120,12 @@ const DEFAULT_COURSES: Course[] = [
     accent: "from-purple-400 to-fuchsia-800",
     turmas: [
       {
-        periodo: "Quarta (1h30m/dia)",
-        turno: ["Manhã", "Tarde"],
+        periodo: "Quarta",
+        turno: ["Manhã\n10h~11h30m"],
       },
       {
-        periodo: "Quinta (1h30m/dia)",
-        turno: ["Noite"],
+        periodo: "Quinta",
+        turno: ["Noite\n19h30m~21h"],
       },
       {
         periodo: "Online",
@@ -141,8 +141,8 @@ const DEFAULT_COURSES: Course[] = [
     accent: "from-indigo-500 to-blue-800",
     turmas: [
       {
-        periodo: "Seg–Qua (2h/dia)",
-        turno: ["Tarde"],
+        periodo: "Seg–Qua",
+        turno: ["Tarde\n15h~17h"],
       },
       {
         periodo: "Online",
@@ -199,13 +199,10 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
     [courses, selectedCourse]
   );
 
-  // when course changes, reset turma/turno
-  useEffect(() => {
-    setSelectedTurmaIdx(null);
-    setSelectedTurno(null);
-  }, [selectedCourse]);
-
-  const promoDiscount = useMemo(() => (payment === "pix" ? 0.05 : 0), [payment]);
+  const promoDiscount = useMemo(
+    () => (payment === "pix" ? 0.05 : 0),
+    [payment]
+  );
   const subtotal = selected?.price ?? 0;
   const discount = Math.round(subtotal * promoDiscount);
   const total = subtotal - discount;
@@ -220,7 +217,7 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
     if (!phone.trim()) e.phone = "Informe um telefone para contato.";
     if (!accept) e.accept = "É necessário aceitar os termos para prosseguir.";
 
-    // if course selected and it has turmas, ensure a turma is chosen
+    // se o curso tiver turmas, exige turma
     if (
       selected &&
       selected.turmas &&
@@ -230,11 +227,13 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
       e.turma = "Escolha um período (turma).";
     }
 
-    // if chosen turma has turnos, ensure turno chosen
+    // se a turma selecionada tiver turnos, exige turno
     if (
       selected &&
       selected.turmas &&
       selectedTurmaIdx !== null &&
+      selectedTurmaIdx >= 0 &&
+      selectedTurmaIdx < selected.turmas.length &&
       selected.turmas[selectedTurmaIdx] &&
       selected.turmas[selectedTurmaIdx].turno &&
       selected.turmas[selectedTurmaIdx].turno!.length > 0 &&
@@ -264,10 +263,18 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
 
   // helpers to display selected period/turno in the summary
   const resumoPeriodo = selected
-    ? selectedTurmaIdx !== null
-      ? selected.turmas?.[selectedTurmaIdx]?.periodo ?? "—"
+    ? selectedTurmaIdx !== null &&
+      selected.turmas &&
+      selectedTurmaIdx >= 0 &&
+      selectedTurmaIdx < selected.turmas.length &&
+      selected.turmas[selectedTurmaIdx]?.periodo
+      ? selected.turmas[selectedTurmaIdx]!.periodo
       : "—"
     : period === "weekday"
+    ? "Seg–Sex"
+    : period === "saturday"
+    ? "Sábados"
+    : "Online";
 
   return (
     <>
@@ -310,7 +317,12 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                     <button
                       key={c.id}
                       type="button"
-                      onClick={() => setSelectedCourse(c.id)}
+                      onClick={() => {
+                        setSelectedCourse(c.id);
+                        // reset de turma/turno ao trocar de curso
+                        setSelectedTurmaIdx(null);
+                        setSelectedTurno(null);
+                      }}
                       className={[
                         "group relative text-left overflow-hidden rounded-xl ring-1 ring-white/10 bg-gradient-to-b from-white/5 to-white/[0.03] hover:ring-white/20 transition-shadow",
                         active &&
@@ -368,7 +380,7 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
             {/* Formulário escuro */}
             <form
               onSubmit={onSubmit}
-              className="rounded-2xl overflow-hidden ring-1 ring-white/10 bg-gradient-to-b from-white/5 to-white/[0.03]"
+              className="rounded-2xl overflow-visible ring-1 ring-white/10 bg-gradient-to-b from-white/5 to-white/[0.03]"
             >
               <div className="px-6 py-5 border-b border-white/10 flex items-center gap-3">
                 <User className="w-5 h-5" />
@@ -484,7 +496,7 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                     Período
                   </label>
 
-                  {/* If a course with turmas is selected, show turma buttons dynamically */}
+                  {/* Se curso com turmas for selecionado, mostra botões dinâmicos */}
                   {selected && selected.turmas ? (
                     <div className="mt-2 space-y-2">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -496,7 +508,7 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                               type="button"
                               onClick={() => {
                                 setSelectedTurmaIdx(idx);
-                                // reset turno when changing turma
+                                // reset turno ao trocar de turma
                                 setSelectedTurno(null);
                               }}
                               className={`rounded-lg px-3 py-2 text-sm ring-1 ${
@@ -511,31 +523,60 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                         })}
                       </div>
 
-                      {/* Show turnos for the selected turma (if any) */}
+                      {/* Turnos da turma selecionada (se houver) */}
                       {selectedTurmaIdx !== null &&
-                        selected.turmas[selectedTurmaIdx].turno && (
+                        selected.turmas &&
+                        selectedTurmaIdx >= 0 &&
+                        selectedTurmaIdx < selected.turmas.length &&
+                        selected.turmas[selectedTurmaIdx] && (
                           <div className="mt-2">
-                            <label className="text-xs text-white/70">
-                              Turno
-                            </label>
-                            <div className="mt-1 grid grid-cols-3 gap-2">
-                              {selected.turmas[selectedTurmaIdx].turno!.map(
-                                (tr) => (
-                                  <button
-                                    key={tr}
-                                    type="button"
-                                    onClick={() => setSelectedTurno(tr)}
-                                    className={`rounded-lg px-3 py-2 text-sm ring-1 ${
-                                      selectedTurno === tr
-                                        ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
-                                        : "ring-white/10 hover:bg-white/5"
-                                    }`}
-                                  >
-                                    {tr}
-                                  </button>
-                                )
-                              )}
-                            </div>
+                            {/* Se o período for Online, mostrar mensagem de monitoria */}
+                            {selected.turmas[selectedTurmaIdx].periodo
+                              .toLowerCase()
+                              .includes("online") ? (
+                              <p className="mt-4 text-sm text-white/70 whitespace-nowrap">
+                                Os alunos poderam ser atendidos nos horarios de
+                                monitoria online. 
+                                <br />
+                                Segunda de 19h às 21h e Sexta de 09h às 11h.
+                              </p>
+                            ) : (
+                              <>
+                                <label className="text-xs text-white/70">
+                                  Turno
+                                </label>
+                                <div className="mt-1 flex gap-2 overflow-visible flex-nowrap">
+                                  {selected.turmas[selectedTurmaIdx].turno!.map(
+                                    (tr) => (
+                                      <button
+                                        key={tr}
+                                        type="button"
+                                        onClick={() => setSelectedTurno(tr)}
+                                        className={`flex-shrink-0 inline-flex flex-col items-center justify-center rounded-lg px-3 py-2 text-sm ring-1 text-center relative z-20 ${
+                                          selectedTurno === tr
+                                            ? "bg-[#A243D2]/15 text-[#A243D2] ring-[#A243D2]/30"
+                                            : "ring-white/10 hover:bg-white/5"
+                                        }`}
+                                      >
+                                        {tr.split("\n").map((line, idx) => (
+                                          <span
+                                            key={idx}
+                                            className={
+                                              idx === 0
+                                                ? "block"
+                                                : "block text-xs text-white/70"
+                                            }
+                                          >
+                                            {line}
+                                          </span>
+                                        ))}
+                                      </button>
+                                    )
+                                  )}
+                                </div>
+                              </>
+                            )}
+
                             {errors.turno && (
                               <p className="mt-1 text-sm text-red-400">
                                 {errors.turno}
@@ -551,7 +592,7 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                       )}
                     </div>
                   ) : (
-                    // fallback to original static period buttons when no course selected
+                    // fallback para período estático quando não há curso selecionado
                     <div className="mt-2 grid grid-cols-3 gap-2">
                       <button
                         type="button"
@@ -776,7 +817,7 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-emerald-400 mt-0.5" />
                     <span>
-                      Escolha PIX para garantir 10% de desconto imediato.
+                      Escolha PIX para garantir 5% de desconto imediato.
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
