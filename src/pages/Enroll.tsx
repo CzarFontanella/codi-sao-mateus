@@ -205,7 +205,7 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
     setSelectedTurno(null);
   }, [selectedCourse]);
 
-  const promoDiscount = useMemo(() => (payment === "pix" ? 0.1 : 0), [payment]);
+  const promoDiscount = useMemo(() => (payment === "pix" ? 0.05 : 0), [payment]);
   const subtotal = selected?.price ?? 0;
   const discount = Math.round(subtotal * promoDiscount);
   const total = subtotal - discount;
@@ -632,7 +632,7 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                   </div>
                   {payment === "pix" && (
                     <p className="mt-2 text-xs text-emerald-300 bg-emerald-500/10 inline-block rounded px-2 py-1">
-                      Desconto de 10% aplicado ao total.
+                      Desconto de 5% aplicado ao total.
                     </p>
                   )}
                 </div>

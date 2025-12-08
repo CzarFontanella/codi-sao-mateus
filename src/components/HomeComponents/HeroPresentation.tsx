@@ -46,6 +46,17 @@ export default function HeroPresentation({
           {subtitle}
         </p>
       </div>
+
+      {/* Imagem decorativa à direita (visível em telas grandes) */}
+      {/* <div className="hidden md:block absolute right-0 top-0 z-0 pointer-events-none h-full">
+        <div className="w-full h-full overflow-hidden shadow-2xl ring-1 ring-white/6 bg-gradient-to-b from-white/5 to-transparent opacity-100">
+          <img
+            src="/img/magic-software.jpg"
+            alt="Ilustração de software mágico"
+            className="w-full h-full object-cover block"
+          />
+        </div>
+      </div> */}
     </section>
   );
 }
