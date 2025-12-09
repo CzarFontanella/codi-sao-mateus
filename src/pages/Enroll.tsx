@@ -194,6 +194,37 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
   const [submitted, setSubmitted] = useState<null | "ok" | "error">(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  // formatação de CPF e Telefone
+  const formatCPF = (value: string) => {
+    const digits = value.replace(/\D/g, "").slice(0, 11);
+    let out = digits;
+    if (digits.length > 9) {
+      out = digits.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+    } else if (digits.length > 6) {
+      out = digits.replace(/(\d{3})(\d{3})(\d{1,3})/, "$1.$2.$3");
+    } else if (digits.length > 3) {
+      out = digits.replace(/(\d{3})(\d{1,3})/, "$1.$2");
+    }
+    return out;
+  };
+
+  const formatPhone = (value: string) => {
+    const digits = value.replace(/\D/g, "");
+    // (XX) XXXXX-XXXX or (XX) XXXX-XXXX
+    if (digits.length <= 2) return digits ? `(${digits}` : "";
+    if (digits.length <= 6) {
+      return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+    }
+    if (digits.length <= 10) {
+      return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+    }
+    // 11+ digits
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(
+      7,
+      11
+    )}`;
+  };
+
   const selected = useMemo(
     () => courses.find((c) => c.id === selectedCourse),
     [courses, selectedCourse]
@@ -249,12 +280,58 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!validate()) return;
+
     try {
       setLoading(true);
       setSubmitted(null);
-      await new Promise((r) => setTimeout(r, 1200));
+
+      const cidadeEnviar =
+        city && city.trim() ? city.trim() : "Juiz de Fora - MG";
+
+      const agora = new Date();
+
+      const payload = {
+        nomeCompleto: name,
+        cpf: doc,
+        email,
+        telefone: phone,
+        cidade: cidadeEnviar,
+        curso: selected?.title ?? "",
+        periodo: resumoPeriodo,
+        turno: selectedTurno ?? "",
+        metodo: payment, // "pix" | "card" | "boleto"
+        subtotal,
+        desconto: discount > 0 ? discount : "N/a",
+        valorFinal: total,
+        dataEnvio: agora.toLocaleDateString("pt-BR"),
+        horaEnvio: agora.toLocaleTimeString("pt-BR", { hour12: false }),
+      };
+
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbxXd5wS7S1bMzd_HoAxKLoIxNzqDYxrNiYvlCFVEhG8AKCwGii0HzEBW0o2lvZJCE5yvg/exec",
+        {
+          method: "POST",
+          // ❌ NÃO use "application/json" senão gera preflight
+          // headers: { "Content-Type": "application/json" },
+          // ✅ Deixa o browser usar o default "text/plain;charset=UTF-8"
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Erro na requisição para o servidor");
+      }
+
+      // Mesmo com text/plain, dá pra usar .json()
+      const data = await response.json().catch(() => null);
+
+      if (!data || !data.ok) {
+        throw new Error(data?.error || "Erro ao processar matrícula");
+      }
+
       setSubmitted("ok");
-    } catch {
+    } catch (err) {
+      console.error(err);
       setSubmitted("error");
     } finally {
       setLoading(false);
@@ -290,8 +367,9 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
               Escolha sua trilha e comece hoje
             </h1>
             <p className="mt-2 text-white/70 max-w-2xl">
-              Preencha seus dados, selecione o curso e o período ideais. Você
-              receberá as instruções no e-mail.
+              Preencha seus dados, selecione o curso, período e turno ideais.
+              <br />
+              Você receberá as instruções no e-mail.
             </p>
           </div>
         </div>
@@ -310,7 +388,10 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                 <h2 className="text-lg font-semibold">Selecione um curso</h2>
               </div>
 
-              <div className="p-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+              <div
+                className="p-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4"
+                aria-required="true"
+              >
                 {courses.map((c) => {
                   const active = selectedCourse === c.id;
                   return (
@@ -326,12 +407,18 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                       className={[
                         "group relative text-left overflow-hidden rounded-xl ring-1 ring-white/10 bg-gradient-to-b from-white/5 to-white/[0.03] hover:ring-white/20 transition-shadow",
                         active &&
-                          "ring-2 ring-[#A243D2]/60 shadow-2xl shadow-black/40",
+                          "ring-2 ring-[#A243D2]/60 shadow-2xl shadow-black/40 hover:ring-white/20",
                       ].join(" ")}
                     >
                       {/* Glow */}
                       <div
-                        className={`pointer-events-none absolute -inset-px rounded-xl opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-25 bg-gradient-to-r ${c.accent}`}
+                        className={`pointer-events-none absolute -inset-px rounded-xl blur-2xl transition-opacity duration-500 bg-gradient-to-r ${
+                          c.accent
+                        } ${
+                          active
+                            ? "opacity-25"
+                            : "opacity-0 group-hover:opacity-25"
+                        }`}
                         aria-hidden
                       />
                       {/* Barra top */}
@@ -395,6 +482,7 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                   <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    required
                     className={`mt-1 w-full rounded-lg border px-3 py-2.5 outline-none transition bg-white/5 text-white placeholder-white/40
                     ${
                       errors.name
@@ -414,7 +502,8 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                   </label>
                   <input
                     value={doc}
-                    onChange={(e) => setDoc(e.target.value)}
+                    onChange={(e) => setDoc(formatCPF(e.target.value))}
+                    required
                     className={`mt-1 w-full rounded-lg border px-3 py-2.5 outline-none transition bg-white/5 text-white placeholder-white/40
                     ${
                       errors.doc
@@ -441,6 +530,7 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                     <input
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      required
                       className="w-full outline-none bg-transparent text-white placeholder-white/40"
                       placeholder="voce@email.com"
                     />
@@ -462,7 +552,8 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                     <Phone className="w-4 h-4 text-white/60" />
                     <input
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={(e) => setPhone(formatPhone(e.target.value))}
+                      required
                       className="w-full outline-none bg-transparent text-white placeholder-white/40"
                       placeholder="(00) 00000-0000"
                     />
@@ -499,7 +590,10 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                   {/* Se curso com turmas for selecionado, mostra botões dinâmicos */}
                   {selected && selected.turmas ? (
                     <div className="mt-2 space-y-2">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      <div
+                        className="grid grid-cols-1 sm:grid-cols-2 gap-2"
+                        aria-required="true"
+                      >
                         {selected.turmas.map((t, idx) => {
                           const active = selectedTurmaIdx === idx;
                           return (
@@ -536,7 +630,7 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                               .includes("online") ? (
                               <p className="mt-4 text-sm text-white/70 whitespace-nowrap">
                                 Os alunos poderam ser atendidos nos horarios de
-                                monitoria online. 
+                                monitoria online.
                                 <br />
                                 Segunda de 19h às 21h e Sexta de 09h às 11h.
                               </p>

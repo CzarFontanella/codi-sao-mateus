@@ -170,14 +170,7 @@ export default function Footer() {
                     <span>Home</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </NavLink>
-                  <NavLink
-                    to="/"
-                    onClick={(e) => goto(e, "/", "about")}
-                    className={linkBtn}
-                  >
-                    <span>Quem Somos</span>
-                    <ArrowUpRight className="w-4 h-4" />
-                  </NavLink>
+
                   <NavLink
                     to="/"
                     onClick={(e) => goto(e, "/", "courses")}
@@ -186,6 +179,16 @@ export default function Footer() {
                     <span>Cursos</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </NavLink>
+
+                  <NavLink
+                    to="/"
+                    onClick={(e) => goto(e, "/", "about")}
+                    className={linkBtn}
+                  >
+                    <span>Quem Somos</span>
+                    <ArrowUpRight className="w-4 h-4" />
+                  </NavLink>
+
                   <NavLink
                     to="/matricula"
                     onClick={(e) => goto(e, "/matricula", "site-main")}
@@ -247,9 +250,7 @@ export default function Footer() {
                     </NavLink>
                     <NavLink
                       to="/cursos/ingles"
-                      onClick={(e) =>
-                        goto(e, "/cursos/ingles", "site-main")
-                      }
+                      onClick={(e) => goto(e, "/cursos/ingles", "site-main")}
                       className="inline-flex items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 p-2 hover:bg-white/10"
                     >
                       <Globe />
