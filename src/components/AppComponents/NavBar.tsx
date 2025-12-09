@@ -73,7 +73,7 @@ export default function NavBar() {
           <div className="relative flex h-20 items-center gap-6">
             {/* Logo à esquerda */}
             <NavLink
-              to="/"
+              to="/sao-mateus"
               className="shrink-0 inline-flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A243D2] rounded-md"
             >
               <img
@@ -137,7 +137,7 @@ export default function NavBar() {
                 to="/"
                 icon={GraduationCap}
                 label="Cursos"
-                onClick={(e) => goto(e, "/", "courses")}
+                onClick={(e) => goto(e, "/sao-mateus", "courses")}
               />
 
               {/* Quem Somos: HOME + scroll para #about */}
@@ -145,7 +145,7 @@ export default function NavBar() {
                 to="/"
                 icon={Glasses}
                 label="Quem Somos"
-                onClick={(e) => goto(e, "/", "about")}
+                onClick={(e) => goto(e, "/sao-mateus", "about")}
               />
 
               <LinkItem to="/matricula" icon={Bookmark} label="Matricule-se" />
@@ -173,7 +173,7 @@ export default function NavBar() {
           <div className="mx-auto max-w-7xl px-4">
             <div className="grid gap-2">
               <LinkItem
-                to="/"
+                to="/sao-mateus"
                 icon={Home}
                 label="Home"
                 onClick={() => setOpen(false)}
@@ -184,7 +184,7 @@ export default function NavBar() {
                 icon={GraduationCap}
                 label="Cursos"
                 onClick={(e) => {
-                  goto(e, "/", "courses");
+                  goto(e, "/sao-mateus", "courses");
                   setOpen(false);
                 }}
               />
@@ -194,7 +194,7 @@ export default function NavBar() {
                 icon={Glasses}
                 label="Quem Somos"
                 onClick={(e) => {
-                  goto(e, "/", "about");
+                  goto(e, "/sao-mateus", "about");
                   setOpen(false);
                 }}
               />

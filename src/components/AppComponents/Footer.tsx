@@ -164,7 +164,7 @@ export default function Footer() {
                 <nav className="mt-4 grid gap-2 text-white/80">
                   <NavLink
                     to="/"
-                    onClick={(e) => goto(e, "/", "site-main")}
+                    onClick={(e) => goto(e, "/sao-mateus", "site-main")}
                     className={linkBtn}
                   >
                     <span>Home</span>
@@ -173,7 +173,7 @@ export default function Footer() {
 
                   <NavLink
                     to="/"
-                    onClick={(e) => goto(e, "/", "courses")}
+                    onClick={(e) => goto(e, "/sao-mateus", "courses")}
                     className={linkBtn}
                   >
                     <span>Cursos</span>
@@ -182,7 +182,7 @@ export default function Footer() {
 
                   <NavLink
                     to="/"
-                    onClick={(e) => goto(e, "/", "about")}
+                    onClick={(e) => goto(e, "/sao-mateus", "about")}
                     className={linkBtn}
                   >
                     <span>Quem Somos</span>

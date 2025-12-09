@@ -14,7 +14,7 @@ export default function Router() {
   return (
     <Routes>
       {/* Rotas públicas */}
-      <Route path="/" element={<Home />} />
+      <Route path="/sao-mateus" element={<Home />} />
       <Route path="/matricula" element={<Enroll />} />
 
       {/* CURSOS */}
@@ -27,7 +27,7 @@ export default function Router() {
       <Route path="/cursos/ingles" element={<Ingles />} />
 
       {/* Fallback */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<Navigate to="/sao-mateus" replace />} />
     </Routes>
   );
 }

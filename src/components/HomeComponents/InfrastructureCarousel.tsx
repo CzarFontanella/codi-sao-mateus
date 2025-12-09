@@ -14,42 +14,42 @@ const infrastructureData: Infrastructure[] = [
     title: "Sala de Aula 1",
     description:
       "Ambiente moderno e equipado com tecnologia de ponta para aulas de programação, desenvolvimento web e mobile.",
-    image: "/img/sala1.jpg",
+    image: "./sala1.jpg",
   },
   {
     id: 2,
     title: "Sala de Aula 2",
     description:
       "Espaço colaborativo e confortável projetado para práticas em grupo, workshops e projetos em equipe.",
-    image: "/img/sala2.jpg",
+    image: "./sala2.jpg",
   },
   {
     id: 3,
     title: "Cantina",
     description:
       "Área equipada com todo o necessario para refeições, alêm da oferta de alguns produtos, proporcionando um ambiente agradável para pausas.",
-    image: "/img/cantina.jpg",
+    image: "./cantina.jpg",
   },
   {
     id: 4,
     title: "Quadro de Estudos",
     description:
       "Espaço dedicado para apresentação de teoria, organização visual de projetos e didáticas colaborativas, favorecendo o aprofundamento em conceitos técnicos.",
-    image: "/img/quadro.jpg",
+    image: "./quadro.jpg",
   },
   {
     id: 5,
     title: "Estúdio de Gravação",
     description:
       "Ambiente profissional equipado para a criação de conteúdo em vídeo e aberto ao uso dos alunos, incentivando a produção de projetos audiovisuais.",
-    image: "/img/estudio.jpg",
+    image: "./estudio.jpg",
   },
   {
     id: 6,
     title: "Escritório da Magic Software",
     description:
       "Ambiente profissional onde os alunos contratados têm a oportunidade de vivenciar o dia a dia do mercado de trabalho em tecnologia.",
-    image: "/img/magic-software.jpg",
+    image: "./magic-software.jpg",
   },
 ];
 
