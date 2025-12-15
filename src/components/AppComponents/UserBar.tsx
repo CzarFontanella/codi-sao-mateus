@@ -3,16 +3,8 @@ import {
   MessageSquare,
   Phone,
 } from "lucide-react";
-import React from "react";
 
 export default function UserBar() {
-  function scrollToFooter(e: React.MouseEvent<HTMLAnchorElement>) {
-    e.preventDefault();
-    const el = document.getElementById("site-footer");
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    else window.location.hash = "#site-footer";
-  }
-
   return (
     <div className="w-full bg-[#A243D2] text-white">
       <div className="mx-auto max-w-7xl px-3 sm:px-8 lg:px-16">
@@ -21,8 +13,7 @@ export default function UserBar() {
           {/* mobile/sm: ocupa largura total e CENTRALIZA; md+: alinha à esquerda */}
           <div className="flex w-full justify-center md:w-auto md:justify-start items-center gap-4">
             <a
-              href="#site-footer"
-              onClick={scrollToFooter}
+              href="http://wa.me/5532988156599"
               className="inline-flex items-center gap-2 font-semibold text-md text-yellow-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 rounded"
               aria-label="Ir para o rodapé da página"
             >

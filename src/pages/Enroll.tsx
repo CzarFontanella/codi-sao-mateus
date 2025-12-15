@@ -795,31 +795,6 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                 </div>
               </div>
 
-              {/* Ações */}
-              <div className="px-6 py-5 border-t border-white/10 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-                <div className="text-sm text-white/70 flex items-center gap-2">
-                  <ChevronRight className="w-4 h-4" />
-                  Ao enviar, você receberá confirmação por e-mail.
-                </div>
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="inline-flex items-center gap-2 rounded-xl bg-[#A243D2] px-5 py-3 text-white font-semibold hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A243D2]/40 disabled:opacity-60"
-                >
-                  {loading ? (
-                    <>
-                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
-                      Enviando…
-                    </>
-                  ) : (
-                    <>
-                      <Zap className="w-5 h-5" />
-                      Confirmar matrícula
-                    </>
-                  )}
-                </button>
-              </div>
-
               {submitted === "ok" && (
                 <div className="px-6 pb-6 -mt-2">
                   <div className="rounded-xl bg-emerald-500/10 text-emerald-200 px-4 py-3 ring-1 ring-emerald-400/30">
@@ -900,6 +875,31 @@ export default function Enroll({ courses = DEFAULT_COURSES }: EnrollPageProps) {
                     <span>Total</span>
                     <span>R$ {total.toLocaleString("pt-BR")}</span>
                   </div>
+                </div>
+
+                {/* Ações */}
+                <div className="px-6 py-5 border-t border-white/10 flex flex-col gap-3 items-center">
+                  <div className="text-sm text-white/70 flex items-center gap-2">
+                    <ChevronRight className="w-4 h-4" />
+                    Ao enviar, você receberá confirmação por e-mail.
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="inline-flex items-center gap-2 rounded-xl bg-[#A243D2] px-5 py-3 text-white font-semibold hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A243D2]/40 disabled:opacity-60"
+                  >
+                    {loading ? (
+                      <>
+                        <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                        Enviando…
+                      </>
+                    ) : (
+                      <>
+                        <Zap className="w-5 h-5" />
+                        Confirmar matrícula
+                      </>
+                    )}
+                  </button>
                 </div>
               </div>
 

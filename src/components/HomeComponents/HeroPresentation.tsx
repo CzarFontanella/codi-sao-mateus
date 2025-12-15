@@ -13,12 +13,11 @@ export default function HeroPresentation({
   highlight = "Futuro",
   subtitle = "Nossa missão é transformar vidas ao capacitar entusiastas de tecnologia para se tornarem profissionais de alta excelência, prontos para atender às demandas do mercado de TI.",
 }: HeroProps) {
-
   return (
     <section className="relative isolate overflow-hidden text-white">
       {/* Glow decorativo de fundo */}
       <div
-        className="pointer-events-none absolute -z-10 left-1/2 top-[-140px] h-[520px] w-[1200px] -translate-x-1/2 rounded-full blur-3xl opacity-30"
+        className="pointer-events-none absolute -z-10 left-1/4 top-[-140px] h-[520px] w-[1200px] -translate-x-1/2 rounded-full blur-3xl opacity-30"
         style={{
           background:
             "radial-gradient(600px 220px at center, rgba(162,67,210,0.5), transparent 60%)",
@@ -48,15 +47,25 @@ export default function HeroPresentation({
       </div>
 
       {/* Imagem decorativa à direita (visível em telas grandes) */}
-      {/* <div className="hidden md:block absolute right-0 top-0 z-0 pointer-events-none h-full">
-        <div className="w-full h-full overflow-hidden shadow-2xl ring-1 ring-white/6 bg-gradient-to-b from-white/5 to-transparent opacity-100">
+      <div className="hidden md:block absolute right-0 top-0 z-0 pointer-events-none h-full">
+        <div className="relative w-full h-full overflow-hidden shadow-2xl bg-gradient-to-b from-white/5 to-transparent opacity-100">
+          {/* Overlay gradiente na lateral esquerda para suavizar a transição */}
+          <div
+            aria-hidden="true"
+            className="absolute left-0 top-0 h-full w-64 md:w-80 lg:w-96 pointer-events-none z-10 animate-[fadeInLeft_0.6s_ease_0s_both]"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(6,6,8,0.92) 0%, rgba(6,6,8,0.7) 30%, rgba(6,6,8,0.3) 60%, rgba(6,6,8,0) 100%)",
+            }}
+          />
+
           <img
-            src="/img/magic-software.jpg"
+            src="./frente.jpeg"
             alt="Ilustração de software mágico"
-            className="w-full h-full object-cover block"
+            className="w-full h-full object-cover block relative z-0"
           />
         </div>
-      </div> */}
+      </div>
     </section>
   );
 }

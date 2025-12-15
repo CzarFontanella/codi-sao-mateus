@@ -84,7 +84,7 @@ export default function InfrastructureCarousel() {
   const current = infrastructureData[currentIndex];
 
   return (
-    <section className="relative py-16 sm:py-24 bg-gradient-to-b from-black/40 to-black/20 text-white overflow-hidden">
+    <section className="relative py-16 sm:py-24 text-white overflow-hidden">
       {/* Glow decorativo */}
       <div
         className="pointer-events-none absolute -z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[1000px] rounded-full blur-3xl opacity-20"
